@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Portal Acadêmico - Login</title>
+        <link rel="stylesheet" href="/css/telaMenu.css" />
+    </head>
+    <body>
+        <div class="login-container">
+            <h2>Bem-vindo ao Portal</h2>
+
+            <div class="tab-container">
+                <button class="tab-btn active" onclick="switchTab('discente')">
+                    Discente
+                </button>
+                <button class="tab-btn" onclick="switchTab('docente')">
+                    Docente
+                </button>
+            </div>
+
+            <form id="loginForm">
+                <p id="user-context">Acesso para <strong>Aluno</strong></p>
+
+                <div class="input-group">
+                    <label for="username">Matrícula ou E-mail</label>
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Digite seu acesso"
+                        required />
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Senha</label>
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="••••••••"
+                        required />
+                    <span class="toggle-password" onclick="togglePassword()">
+                        <i id="eye-icon">👁️</i>
+                    </span>
+                </div>
+
+                <button type="submit" class="login-btn">Entrar</button>
+                <a href="#" class="forgot-password">Esqueceu a senha?</a>
+            </form>
+        </div>
+
+        <script src="/js/telaMenu.js"></script>
+    </body>
+</html>
