@@ -1,3 +1,5 @@
+"use strict";
+    
 class DocenteModel {
     #matricula;
     #cpf;
