@@ -1,28 +1,29 @@
 "use strict";
 
 const PessoaModel = require("./PessoaModel");
-
-class DocenteModel extends PessoaModel {
+    
+class DiscenteModel extends PessoaModel {
     #matricula;
     #cpf;
     #nome;
     #senha;
     #email;
     #dataNascimento;
+    #turma;
     #endereco;
-    #materiaResponsalvel;
-    #cargo;
-    constructor(matricula, nome, cpf, email, dataNascimento, senha, endereco, materiaResponsavel, cargo) {
-        super(matricula, nome, cpf, email, dataNascimento, senha, endereco, materiaResponsavel, cargo)
+
+    constructor(matricula, nome, cpf, email, dataNascimento, senha, turma, endereco) {
+        super(matricula, nome, cpf, email, dataNascimento, senha, turma, endereco)
         this.#matricula = matricula;
         this.#cpf = cpf;
         this.#nome = nome;
         this.#senha = senha;
         this.#email = email;
         this.#dataNascimento = dataNascimento;
+        this.#turma = turma;
         this.#endereco = endereco;
-        this.#materiaResponsalvel = materiaResponsavel;
     }
+
     getNome() {
         return this.#nome;
     }
@@ -72,25 +73,18 @@ class DocenteModel extends PessoaModel {
         this.#endereco = novoEndereco;
         return this.#endereco;
     }
-    getMateriaResponsavel() {
-        return this.#materiaResponsalvel;
+    getTurma() {
+        return this.#turma;
     }
-    setMateriaResponsavel(NovaMateria) {
-        this.#materiaResponsalvel = NovaMateria;
-        return this.#materiaResponsalvel;
-    }
-     getCargo() {
-        return this.#cargo;
-    }
-    setCargo(cargoNovo) {
-        this.#cargo = cargoNovo;
-        return this.#cargo;
+    setTurma(novaTurma) {
+        this.#turma = novaTurma;
+        return this.#turma;
     }
 }
 
-module.exports = new DocenteModel();
+module.exports = DocenteModel;
 
- // while (true) {
+   // while (true) {
         //     if (this.#cpf.length != 11) console.log("Insira 11 digitos: ");
         //     else return false;
         // }

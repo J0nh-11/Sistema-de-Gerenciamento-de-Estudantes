@@ -13,7 +13,7 @@ class ConnectionFactory {
         });
     }
 
-    connect() {
+    async connect() {
         this.connection.connect((err) => {
             if (err) {
                 console.error("Erro ao conectar ao Banco de Dados: " + err);
@@ -23,11 +23,11 @@ class ConnectionFactory {
         });
     }
 
-    getConnection() {
+    async getConnection() {
         return this.connection;
     }
 
-    end() {
+    async end() {
         this.connection.end((err) => {
             if (err) {
                 console.error(
@@ -38,6 +38,9 @@ class ConnectionFactory {
             console.log("Conexão encerrada!");
         });
     }
+    async getEnd() {
+        return this.end;
+    }
 }
 
-module.exports = ConnectionFactory;
+module.exports = new ConnectionFactory();
