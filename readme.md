@@ -14,3 +14,7 @@ Terceiro dia:
 - 05/05
 O projeto está sendo desenvolvido na área de front-end; implementado os scripts (nodemon e start);
 estou agora buscando desenvolver as demais funções do projeto.
+
+Quarto dia:
+- 06-11/05
+O projeto está fluindo com mais melhorias, projeto está com o objetivo de ter usuarios acima de docentes que possam adicionar outros usuariosm-, docentes e alunos; foi feita melhorias em arquivos html, js e sql. Daqui a dois dias será feito o modelo conceitual e lógica e o UML de classes.
