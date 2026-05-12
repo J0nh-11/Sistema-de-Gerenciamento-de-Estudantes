@@ -4,7 +4,11 @@ create database if not exists Sistema;
 create table if not exists login (
     matricula int not null primary key;
     email varchar(350) not null,
-    senha varchar(400) not null
+    senha varchar(400) not null,
+    foreign key (matricula)
+    referencs
+    pessoa(matricula),
+    
 );
 
 create table if not exists pessoa (
@@ -28,6 +32,9 @@ create table if not exists Docente (
     endereco varchar(250),
     materiaResponsalvel varchar(250),
     cargo varchar(250),
+    foreign key (matricula)
+    references
+    Docente(matricula),
 )
 
 create table if not exists Discente (
@@ -39,4 +46,7 @@ create table if not exists Discente (
     dataNascimento varchar(250),
     turma varchar(4)
     endereco varchar(250),
+    foreign key (matricula),
+    references
+    Discente(matricula)
 )

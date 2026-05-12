@@ -4,7 +4,7 @@ const app = express();
 const mysql2 = require('mysql2');
 const connectionFactory = require('../projetoFinal912a/config/db/ConnectionFactory');
 const porta = 3000
-
+app.use(express.json());
 //Conecta a pasta public com arquivos estáticos.
 app.use(express.static(path.join(__dirname, "public", 'css')));
 
