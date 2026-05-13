@@ -72,19 +72,14 @@ class DocenteModel extends PessoaModel {
         this.#endereco = novoEndereco;
         return this.#endereco;
     }
+
     getMateriaResponsavel() {
         return this.#materiaResponsalvel;
     }
-    setMateriaResponsavel(NovaMateria) {
-        this.#materiaResponsalvel = NovaMateria;
-        return this.#materiaResponsalvel;
-    }
-     getCargo() {
-        return this.#cargo;
-    }
-    setCargo(cargoNovo) {
-        this.#cargo = cargoNovo;
-        return this.#cargo;
+
+    setMateriaResponsavel(materiaResponsavel) {
+        this.materiaResponsavel = materiaResponsavel;
+        return this.materiaResponsavel;
     }
 }
 

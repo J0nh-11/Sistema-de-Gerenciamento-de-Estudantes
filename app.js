@@ -1,30 +1,39 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
+const connectionFactory = require("./config/db/ConnectionFactory");
+const porta = process.env.PORT || 3000;
 const app = express();
-const mysql2 = require('mysql2');
-const connectionFactory = require('../projetoFinal912a/config/db/ConnectionFactory');
-const porta = 3000
+
 app.use(express.json());
-//Conecta a pasta public com arquivos estáticos.
-app.use(express.static(path.join(__dirname, "public", 'css')));
+app.use(express.static(path.join(__dirname, "public")));
+
+app.post("/login", (req, res) => {
+    res.sendFile(path.join(__dirname, "src", "view", "menu", "telaMenu.html"));
+});
 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname,"src","view", "menu","telaMenu.html"));
+    res.sendFile(path.join(__dirname, "src", "view", "menu", "telaMenu.html"));
 });
 
 app.use((req, res) => {
     res.status(404).send("Página não encontrada");
 });
+//Conexão com o banco:
+(async () => {
+    try {
+        await connectionFactory.connect();
+        app.listen(porta, () => {
+            console.log(`Servidor rodando em http://localhost:${porta}`);
+        });
+    } catch (error) {
+        console.error("Falha ao iniciar o servidor:", error);
+        process.exit(1);
+    }
+})();
 
-app.listen(porta, () => {
-    console.log(`Servidor rodando em http://localhost:${porta}`);
+process.on("SIGINT", async () => {
+    console.log("Encerrando servidor...");
+    await connectionFactory.end();
+    process.exit(0);
 });
-
-// Criando uma instância da ConnectionFactory
-// Testando a conexão com o banco de dados
-connectionFactory.connect();
-// Simulando uma operação no banco de dados
-setTimeout(function() {
-// Encerrando a conexão com o banco de dados após 5 segundos
-connectionFactory.end();
-}, 4000);

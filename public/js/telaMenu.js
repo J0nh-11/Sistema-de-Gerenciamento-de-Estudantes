@@ -21,7 +21,7 @@ function togglePassword() {
 
     if (passwordInput.type === "password") {
         passwordInput.type = "text";
-        eyeIcon.textContent = "🙈"; // Muda o ícone quando visível
+        eyeIcon.textContent = "�"; // Muda o ícone quando visível
     } else {
         passwordInput.type = "password";
         eyeIcon.textContent = "👁️"; // Volta para o ícone original

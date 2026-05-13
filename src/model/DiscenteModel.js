@@ -83,8 +83,3 @@ class DiscenteModel extends PessoaModel {
 }
 
 module.exports = DocenteModel;
-
-   // while (true) {
-        //     if (this.#cpf.length != 11) console.log("Insira 11 digitos: ");
-        //     else return false;
-        // }

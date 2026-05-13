@@ -1,9 +1,14 @@
 "use strict";
 
-const Docente = require('./DocenteModel');
-const mysql2 = require('mysql2');
-const criptografia =  require('bcrypt');
+const connectionFactory = require("../../config/db/ConnectionFactory");
 
 class DocenteDao {
-    
+    async findAll() {
+        const [rows] = await connectionFactory.getConnection().execute(
+            "SELECT * FROM docente",
+        );
+        return rows;
+    }
 }
+
+module.exports = new DocenteDao();

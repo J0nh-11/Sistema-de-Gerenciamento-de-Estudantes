@@ -4,7 +4,8 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Portal Acadêmico - Login</title>
-        <link rel="stylesheet" href="/public/css/telaMenu.css" />
+        <link rel="stylesheet" href="/css/telaMenu.css" />
+        <script src="/js/telaMenu.js"></script>
     </head>
     <body>
         <div class="login-container">
@@ -31,7 +32,7 @@
                         required />
                 </div>
 
-                <div class="input-group">
+                <div class="input-group password-wrapper">
                     <label for="password">Senha</label>
                     <input
                         type="password"
@@ -39,7 +40,7 @@
                         placeholder="••••••••"
                         required />
                     <span class="toggle-password" onclick="togglePassword()">
-                        <i id="eye-icon">👁️</i>
+                        <i id="eye-icon">ver</i>
                     </span>
                 </div>
 
@@ -47,7 +48,5 @@
                 <a href="#" class="forgot-password">Esqueceu a senha?</a>
             </form>
         </div>
-
-        <script src="/public/js/telaMenu.js"></script>
     </body>
 </html>

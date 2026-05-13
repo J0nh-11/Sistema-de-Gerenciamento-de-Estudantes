@@ -1,67 +1,70 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel do Docente - Sistema Escolar</title>
-    <link rel="stylesheet" href="/public/css/telaDiscente.css">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Painel do Docente - Sistema Escolar</title>
+        <link rel="stylesheet" href="/css/telaDiscente.css" />
 
-    <div class="dashboard-container">
-        <aside class="sidebar">
-            <div class="profile-info">
-                <div class="avatar-circle"></div>
-                <h3></h3>
-                <p></p>
-            </div>
-            
-            <nav class="sidebar-nav">
-                <ul>
-                    <li><a href="#" class="active"> Dashboard</a></li>
-                    <li><a href="#"> Horário Escolar</a></li>
-                    <li><a href="#"> Configurações</a></li>
-                </ul>
-            </nav>
+        <script src="/js/telaDiscente.js"></script>
+    </head>
+    <body>
+        <div class="dashboard-container">
+            <aside class="sidebar">
+                <div class="profile-info">
+                    <div class="avatar-circle"></div>
+                    <h3></h3>
+                    <p></p>
+                </div>
 
-            <div class="sidebar-footer">
-                <button class="logout-btn">Sair do Sistema</button>
-            </div>
-        </aside>
+                <nav class="sidebar-nav">
+                    <ul>
+                        <li><a href="#" class="active"> Dashboard</a></li>
+                        <li><a href="#"> Horário Escolar</a></li>
+                        <li><a href="#"> Configurações</a></li>
+                    </ul>
+                </nav>
 
-        <main class="main-content">
-            <header class="top-header">
-                <h1>Painel de Gestão Discente</h1>
-                <div class="date-display" id="current-date"></div>
-            </header>
+                <div class="sidebar-footer">
+                    <button class="logout-btn">Sair do Sistema</button>
+                </div>
+            </aside>
 
-            <div class="grid-layout">
-                <section class="card">
-                    <div class="card-header">
-                        <span class="icon"></span>
-                        <h2>Diário de Classe</h2>
-                    </div>
-                    <p>Controle de aproveitamento e assiduidade das turmas.</p>
-                    <div class="button-stack">
-                        <button class="btn btn-success"> Notas e Frequência</button>
-                        <button class="btn btn-info"> Gerar Boletim</button>
-                    </div>
-                </section>
+            <main class="main-content">
+                <header class="top-header">
+                    <h1>Painel de Gestão Discente</h1>
+                    <div class="date-display" id="current-date"></div>
+                </header>
 
-                <section class="card">
-                    <div class="card-header">
-                        <span class="icon"></span>
-                    <div class="button-stack">
-                        <button class="btn btn-dark"> Mural de Avisos</button>
-                    </div>
-                </section>
+                <div class="grid-layout">
+                    <section class="card">
+                        <div class="card-header">
+                            <span class="icon"></span>
+                            <h2>Diário de Classe</h2>
+                        </div>
+                        <p>
+                            Controle de aproveitamento e assiduidade das turmas.
+                        </p>
+                        <div class="button-stack">
+                            <button class="btn btn-success">
+                                Notas e Frequência
+                            </button>
+                            <button class="btn btn-info">Gerar Boletim</button>
+                        </div>
+                    </section>
 
-            </div>
-        </main>
-    </div>
-
-    <script src="/public/js/telaDiscente.js">
-        
-    </script>
-</body>
-</html> 
+                    <section class="card">
+                        <div class="card-header">
+                            <span class="icon"></span>
+                        </div>
+                        <div class="button-stack">
+                            <button class="btn btn-dark">
+                                Mural de Avisos
+                            </button>
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>

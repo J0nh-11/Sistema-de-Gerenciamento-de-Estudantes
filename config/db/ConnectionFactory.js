@@ -1,11 +1,11 @@
 "use strict";
 
 require("dotenv").config();
-const mysql2 = require("mysql2");
+const mysql = require("mysql2/promise");
 
 class ConnectionFactory {
     constructor() {
-        this.connection = mysql2.createConnection({
+        this.pool = mysql.createPool({
             host: process.env.DB_HOST,
             user: process.env.DB_USER,
             password: process.env.DB_PASS,
@@ -14,32 +14,35 @@ class ConnectionFactory {
     }
 
     async connect() {
-        this.connection.connect((err) => {
-            if (err) {
-                console.error("Erro ao conectar ao Banco de Dados: " + err);
-                return;
-            }
+        try {
+            const connection = await this.pool.getConnection();
+            connection.release();
             console.log("Conexão bem sucedida!");
-        });
+        } catch (err) {
+            console.error("Erro ao conectar ao banco de dados:", err);
+            throw err;
+        }
     }
 
-    async getConnection() {
-        return this.connection;
+    getConnection() {
+        return this.pool;
+    }
+
+    async execute(sql, params = []) {
+        return this.pool.execute(sql, params);
     }
 
     async end() {
-        this.connection.end((err) => {
-            if (err) {
-                console.error(
-                    "Erro ao encerrar a conexão com Banco de Dados: " + err,
-                );
-                return;
-            }
+        try {
+            await this.pool.end();
             console.log("Conexão encerrada!");
-        });
-    }
-    async getEnd() {
-        return this.end;
+        } catch (err) {
+            console.error(
+                "Erro ao encerrar a conexão com o banco de dados:",
+                err,
+            );
+            throw err;
+        }
     }
 }
 

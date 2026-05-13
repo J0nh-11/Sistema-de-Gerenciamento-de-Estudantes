@@ -85,4 +85,4 @@ class PessoaModel {
     }
 }
 
-module.exports = new PessoaModel();
+module.exports = PessoaModel;
