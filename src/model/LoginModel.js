@@ -1,9 +1,12 @@
-class Login {
+const PessoaModel = require("./PessoaModel");
+
+class LoginModel extends PessoaModel {
     #id;
     #senha;
     #matricula;
     #email;
     constructor(id, senha, matricula, email) {
+        super(id, senha, matricula, email)
         this.#id = id;
         this.#senha = senha;
         this.#matricula = matricula;
@@ -32,4 +35,4 @@ class Login {
     }
 }
 
-module.exports = Login;
+module.exports = LoginModel;
