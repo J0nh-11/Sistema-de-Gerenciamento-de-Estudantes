@@ -2,56 +2,62 @@
 
 const bcrypt = require("bcrypt");
 const connectionFactory = require("../../config/db/ConnectionFactory");
+const { findAll, create } = require("./LoginDao");
 
-exports.findAll = async () => {
-    const [rows] = await connectionFactory
-        .getConnection()
-        .execute("SELECT * FROM pessoa");
-    return rows;
-};
+function filtra() {
+    exports.findAll = async () => {
+        const [rows] = await connectionFactory
+            .getConnection()
+            .execute("SELECT * FROM pessoa");
+        return rows;
+    };
+}
 
-exports.create = async ({
-    matricula,
-    cpf,
-    nome,
-    senha,
-    email,
-    dataNascimento,
-    endereco,
-    cargo,
-}) => {
-    const hashedSenha = await bcrypt.hash(senha, 10);
-    const [result] = await connectionFactory
-        .getConnection()
-        .execute(
-            "INSERT INTO pessoa (matricula, cpf, nome, senha, email, dataNascimento, endereco, cargo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-            [
-                matricula,
-                cpf,
-                nome,
-                hashedSenha,
-                email,
-                dataNascimento,
-                endereco,
-                cargo,
-            ],
-        );
-    return result;
-};
+function create() {
+    exports.create = async ({
+        matricula,
+        cpf,
+        nome,
+        senha,
+        email,
+        dataNascimento,
+        endereco,
+        cargo,
+    }) => {
+        const hashedSenha = await bcrypt.hash(senha, 10);
+        const [result] = await connectionFactory
+            .getConnection()
+            .execute(
+                "INSERT INTO pessoa (matricula, cpf, nome, senha, email, dataNascimento, endereco, cargo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                [
+                    matricula,
+                    cpf,
+                    nome,
+                    hashedSenha,
+                    email,
+                    dataNascimento,
+                    endereco,
+                    cargo,
+                ],
+            );
+        return result;
+    };
+}
 
-exports.update = async ({
-    matricula,
-    cpf,
-    nome,
-    senha,
-    email,
-    dataNascimento,
-    endereco,
-    cargo,
-}) => {
-    const hashedSenhaNova = await bcrypt.hash(senha, 10);
-    const [result] = await connectionFactory.getConnection().execute(
-        `UPDATE pessoa 
+function update() {
+    exports.update = async ({
+        matricula,
+        cpf,
+        nome,
+        senha,
+        email,
+        dataNascimento,
+        endereco,
+        cargo,
+    }) => {
+        const hashedSenhaNova = await bcrypt.hash(senha, 10);
+        const [result] = await connectionFactory.getConnection().execute(
+            `UPDATE pessoa 
         set matricula = ?
         set cpf = ?
         set nome = ?
@@ -60,23 +66,33 @@ exports.update = async ({
         set dataNascimento = ?
         set endereco = ?
         set cargo = ?`,
-        [
-            matricula,
-            cpf,
-            nome,
-            hashedSenhaNova,
-            email,
-            dataNascimento,
-            endereco,
-            cargo,
-        ],
-    );
-    return result;
-};
+            [
+                matricula,
+                cpf,
+                nome,
+                hashedSenhaNova,
+                email,
+                dataNascimento,
+                endereco,
+                cargo,
+            ],
+        );
+        return result;
+    };
+}
 
-exports.DELETE = async ({ matricula }) => {
-    const [result] = await connectionFactory
-        .getConnection()
-        .execute("DELETE from pessoa where matricula = ?"[matricula]);
-    return result;
+function DELETE() {
+    exports.DELETE = async ({ matricula }) => {
+        const [result] = await connectionFactory
+            .getConnection()
+            .execute("DELETE from pessoa where matricula = ?"[matricula]);
+        return result;
+    };
+}
+
+module.exports = {
+    filtra,
+    create,
+    update,
+    DELETE,
 };
