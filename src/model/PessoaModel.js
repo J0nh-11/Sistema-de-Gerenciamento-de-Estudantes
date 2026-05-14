@@ -73,7 +73,8 @@ class PessoaModel {
     getEndereco() {
         return this.#endereco;
     }
-    setEndereco() {
+    setEndereco(endereco) {
+        this.#endereco = endereco;
         return this.#endereco;
     }
     getCargo() {
