@@ -56,10 +56,10 @@ exports.update = async ({
         set cpf = ?
         set nome = ?
         set hashedSenhaNova = ?
-        set matricula = ?
-        set matricula = ?
-        set matricula = ?
-        set matricula = ?`,
+        set email = ?
+        set dataNascimento = ?
+        set endereco = ?
+        set cargo = ?`,
         [
             matricula,
             cpf,
