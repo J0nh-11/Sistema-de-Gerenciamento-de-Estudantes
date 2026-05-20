@@ -1,9 +1,5 @@
--- Criação do banco
-CREATE DATABASE IF NOT EXISTS sistema;
-USE sistema;
 
---table main  
-CREATE TABLE pessoa (
+CREATE TABLE IF NOT EXISTS pessoa (
     matricula INT PRIMARY KEY,
     cpf VARCHAR(11) UNIQUE NOT NULL,
     nome VARCHAR(250) NOT NULL,
@@ -14,7 +10,6 @@ CREATE TABLE pessoa (
     cargo ENUM('docente', 'discente', 'admin') NOT NULL
 );
 
--- Tabela docente (especialização)
 CREATE TABLE IF NOT EXISTS docente (
     matricula INT NOT NULL PRIMARY KEY,
     materiaResponsavel VARCHAR(250),
@@ -22,7 +17,6 @@ CREATE TABLE IF NOT EXISTS docente (
         REFERENCES pessoa(matricula)
 );
 
--- Tabela discente (especialização)
 CREATE TABLE IF NOT EXISTS discente (
     matricula INT NOT NULL PRIMARY KEY,
     turma VARCHAR(4),
@@ -30,3 +24,4 @@ CREATE TABLE IF NOT EXISTS discente (
     FOREIGN KEY (matricula)
         REFERENCES pessoa(matricula)
 );
+
