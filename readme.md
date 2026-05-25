@@ -26,3 +26,7 @@ Resumo: Agora o projeto está mais fluente em organiação e mais limpo. Agora t
 Maiores dificuldades:  Entender alguns conceitos: O que service faz, por quê separar o server do app, como funciona realmente o DAO, como fazer um controller eficiente, como fazer o service, quando devo exportar a class ou o objeto, dificuldades em caminhos URL.
 
 IAs utilizadas: Chatgpt e gemini: Precisei tirar dúvida de muitos conceitos para conecta o DAO ao service e converter os dados, como fazer as URLs, tirar dúvida de como funcionaria os métodos se eu exportasse de formas diferentes e qual a causa e prolemas que poderiam ocorrer.
+
+Sexto dia:
+- 25/05
+Resumo: FOi feito um arquivo que inicia temporariamente a conexão com o banco de dados, criando o banco, as tabelas; também foi criado um script p/ criar automaticamente o usuário adm no banco de dados. Além de ter feito todas as tabelas do sistema!
