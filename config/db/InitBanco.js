@@ -2,6 +2,7 @@
 const fs = require("fs");
 const path = require("path");
 const mysql = require("mysql2/promise");
+const adminSeeder = require("./seeders/CreateAdmin");
 
 async function InitDatabase() {
     const connectTemporaria = await mysql.createConnection({
@@ -9,7 +10,7 @@ async function InitDatabase() {
         user: process.env.DB_USER,
         password: process.env.DB_PASS,
 
-        multipleStatements: true
+        multipleStatements: true,
     });
     //Cria o banco se não existir
     await connectTemporaria.query("CREATE DATABASE IF NOT EXISTS sistema;");
@@ -24,9 +25,16 @@ async function InitDatabase() {
 
     ///Executa slqPath (arquivo com códigos puros sql);
     await connectTemporaria.query(sql);
-    await connectTemporaria.end();
-    console.log('Conexão temporaria encerrada!')
+    console.log("Tabelas verificadas/Criadas.");
+
+    //Cria adm se não houver:
+
+    await adminSeeder();
+    console.log("Adm criado/já existe.");
     
+    await connectTemporaria.end();
+
+    console.log("Conexão temporaria encerrada!");
 }
 
 module.exports = InitDatabase;
