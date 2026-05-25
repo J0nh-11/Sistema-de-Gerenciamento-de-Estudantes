@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Painel Administrativo - Sistema Escolar</title>
+
+        <link rel="stylesheet" href="/css/admin.css" />
+    </head>
+
+    <body>
+        <div class="dashboard-container">
+            <!-- SIDEBAR -->
+            <aside class="sidebar">
+                <div class="profile-info">
+                    <div class="avatar-circle">A</div>
+
+                    <h3>Administrador</h3>
+
+                    <p>Controle Total do Sistema</p>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <ul>
+                        <li>
+                            <a href="#" class="active"> Dashboard </a>
+                        </li>
+
+                        <li>
+                            <a href="#"> Gestão Académica </a>
+                        </li>
+
+                        <li>
+                            <a href="#"> Comunicação </a>
+                        </li>
+
+                        <li>
+                            <a href="#"> Relatórios </a>
+                        </li>
+
+                        <li>
+                            <a href="#"> Configurações </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <button class="logout-btn">Sair do Sistema</button>
+                </div>
+            </aside>
+
+            <!-- CONTEÚDO -->
+            <main class="main-content">
+                <!-- TOPO -->
+                <header class="top-header">
+                    <div>
+                        <h1>Painel Administrativo</h1>
+
+                        <p class="subtitle">
+                            Gestão completa da instituição escolar
+                        </p>
+                    </div>
+
+                    <div class="date-display" id="current-date">
+                        Segunda-feira, 04 de Maio
+                    </div>
+                </header>
+
+                <!-- CARDS -->
+                <div class="grid-layout">
+                    <!-- CADASTROS -->
+                    <section class="card">
+                        <div class="card-header">
+                            <span class="icon">👥</span>
+
+                            <h2>Solicitações de Cadastro</h2>
+                        </div>
+
+                        <p>
+                            Gerencie pedidos de cadastro enviados por alunos,
+                            docentes e administradores.
+                        </p>
+
+                        <div class="button-stack">
+                            <!-- LISTA DE ALUNOS -->
+                            <button
+                                class="btn btn-primary"
+                                onclick="
+                                    window.location.href =
+                                        '/admin/cadastros/discente'
+                                ">
+                                Solicitações de Alunos
+                            </button>
+
+                            <!-- LISTA DE DOCENTES -->
+                            <button
+                                class="btn btn-outline"
+                                onclick="
+                                    window.location.href =
+                                        '/admin/cadastros/docente'
+                                ">
+                                Solicitações de Docentes
+                            </button>
+
+                            <!-- LISTA DE ADMINS -->
+                            <button
+                                class="btn btn-dark"
+                                onclick="
+                                    window.location.href =
+                                        '/admin/cadastros/admin'
+                                ">
+                                Solicitações de Administradores
+                            </button>
+                            <!-- LISTA DE RESPONSÁVEIS -->
+                            <button
+                                class="btn btn-success"
+                                onclick="
+                                    window.location.href =
+                                        '/admin/cadastros/responsavel'
+                                ">
+                                Solicitações de Responsáveis
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- MATRÍCULAS -->
+                    <section class="card">
+                        <div class="card-header">
+                            <span class="icon">📚</span>
+
+                            <h2>Matrículas Académicas</h2>
+                        </div>
+
+                        <p>
+                            Gerencie matrículas de alunos em cursos e
+                            disciplinas.
+                        </p>
+
+                        <div class="button-stack">
+                            <button class="btn btn-success">
+                                Realizar Matrícula
+                            </button>
+
+                            <button class="btn btn-info">
+                                Gerenciar Disciplinas
+                            </button>
+
+                            <button class="btn btn-outline">
+                                Ver Cursos Disponíveis
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- NOTAS -->
+                    <section class="card">
+                        <div class="card-header">
+                            <span class="icon">📝</span>
+
+                            <h2>Notas e Desempenho</h2>
+                        </div>
+
+                        <p>
+                            Controle acadêmico completo de rendimento dos
+                            estudantes.
+                        </p>
+
+                        <div class="button-stack">
+                            <button class="btn btn-warning">
+                                Lançar Notas
+                            </button>
+
+                            <button class="btn btn-success">
+                                Gerar Boletins
+                            </button>
+
+                            <button class="btn btn-dark">
+                                Relatórios de Desempenho
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- FREQUÊNCIA -->
+                    <section class="card">
+                        <div class="card-header">
+                            <span class="icon">📅</span>
+
+                            <h2>Controle de Frequência</h2>
+                        </div>
+
+                        <p>
+                            Registre presença e acompanhe frequência escolar dos
+                            alunos.
+                        </p>
+
+                        <div class="button-stack">
+                            <button class="btn btn-primary">
+                                Registrar Frequência
+                            </button>
+
+                            <button class="btn btn-info">Ver Relatórios</button>
+
+                            <button class="btn btn-outline">
+                                Histórico de Presenças
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- COMUNICAÇÃO -->
+                    <section class="card">
+                        <div class="card-header">
+                            <span class="icon">💬</span>
+
+                            <h2>Comunicação Escolar</h2>
+                        </div>
+
+                        <p>
+                            Comunicação entre escola, alunos, docentes e
+                            responsáveis.
+                        </p>
+
+                        <div class="button-stack">
+                            <button class="btn btn-warning">
+                                Enviar Mensagem
+                            </button>
+
+                            <button class="btn btn-dark">
+                                Criar Aviso Geral
+                            </button>
+
+                            <button class="btn btn-success">
+                                Notificações
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- RELATÓRIOS -->
+                    <section class="card">
+                        <div class="card-header">
+                            <span class="icon">📊</span>
+
+                            <h2>Relatórios Administrativos</h2>
+                        </div>
+
+                        <p>
+                            Visualize dados completos da instituição em tempo
+                            real.
+                        </p>
+
+                        <div class="button-stack">
+                            <button class="btn btn-primary">
+                                Relatório Geral
+                            </button>
+
+                            <button class="btn btn-info">Exportar Dados</button>
+
+                            <button class="btn btn-outline">
+                                Estatísticas
+                            </button>
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+
+        <script src="/js/admin.js"></script>
+    </body>
+</html>
