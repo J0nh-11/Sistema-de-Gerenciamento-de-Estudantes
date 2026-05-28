@@ -25,8 +25,8 @@ async function adminSeeder() {
         // Cria admin
         await connectionFactory.execute(
             `INSERT INTO pessoa
-            (matricula, cpf, nome, senha, email, dataNascimento, endereco, cargo)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+            (matricula, cpf, nome, senha, email, data_nascimento, endereco, celular,cargo)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)`,
 
             [
                 2020228817,
@@ -36,13 +36,14 @@ async function adminSeeder() {
                 "joaodanielmaster6475@gmail.com",
                 "20080719",
                 "Mirante de Atalaia",
+                "82993998708",
                 "admin",
             ],
         );
 
         console.log("Admin criado.");
     } catch (error) {
-        console.error("Erro no adminSeeder:", error);
+        console.erro("Erro no adminSeeder:", erro);
     }
 }
 
