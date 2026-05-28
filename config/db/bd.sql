@@ -12,20 +12,24 @@ CREATE TABLE IF NOT EXISTS pessoa (
 
     email VARCHAR(250) UNIQUE NOT NULL,
 
-    dataNascimento DATE NOT NULL,
+    data_nascimento DATE NOT NULL,
 
     endereco VARCHAR(250),
+
+    celular VARCHAR(50)UNIQUE NOT NULL,
 
     cargo ENUM(
         'docente',
         'discente',
         'admin',
         'responsavel'
-    ) NOT NULL
+    ) NOT NULL,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP
 );
-
-
-
 CREATE TABLE IF NOT EXISTS docente (
 
     matricula VARCHAR(20) PRIMARY KEY,
@@ -40,9 +44,6 @@ CREATE TABLE IF NOT EXISTS docente (
         REFERENCES pessoa(matricula)
         ON DELETE CASCADE
 );
-
-
-
 CREATE TABLE IF NOT EXISTS discente (
 
     matricula VARCHAR(20) PRIMARY KEY,
@@ -55,9 +56,6 @@ CREATE TABLE IF NOT EXISTS discente (
         REFERENCES pessoa(matricula)
         ON DELETE CASCADE
 );
-
-
-
 CREATE TABLE IF NOT EXISTS responsavel (
 
     matricula VARCHAR(20) PRIMARY KEY,
@@ -68,9 +66,27 @@ CREATE TABLE IF NOT EXISTS responsavel (
         REFERENCES pessoa(matricula)
         ON DELETE CASCADE
 );
+CREATE TABLE IF NOT EXISTS responsavel_discente (
 
+    id INT PRIMARY KEY AUTO_INCREMENT,
 
+    responsavel_matricula VARCHAR(20) NOT NULL,
 
+    discente_matricula VARCHAR(20) NOT NULL,
+
+    UNIQUE (
+        responsavel_matricula,
+        discente_matricula
+    ),
+
+    FOREIGN KEY (responsavel_matricula)
+        REFERENCES responsavel(matricula)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY (discente_matricula)
+        REFERENCES discente(matricula)
+        ON DELETE CASCADE
+);
 CREATE TABLE IF NOT EXISTS disciplina (
 
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -79,13 +95,14 @@ CREATE TABLE IF NOT EXISTS disciplina (
 
     docente_matricula VARCHAR(20) NOT NULL,
 
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    UNIQUE (nome, docente_matricula),
+
     FOREIGN KEY (docente_matricula)
         REFERENCES docente(matricula)
         ON DELETE CASCADE
 );
-
-
-
 CREATE TABLE IF NOT EXISTS matricula_disciplina (
 
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -94,35 +111,24 @@ CREATE TABLE IF NOT EXISTS matricula_disciplina (
 
     disciplina_id INT NOT NULL,
 
-    UNIQUE (discente_matricula, disciplina_id),
+    ano YEAR NOT NULL,
 
-    FOREIGN KEY (discente_matricula)
-        REFERENCES discente(matricula)
-        ON DELETE CASCADE,
+    semestre ENUM('1', '2') NOT NULL,
 
-    FOREIGN KEY (disciplina_id)
-        REFERENCES disciplina(id)
-        ON DELETE CASCADE
-);
+    status ENUM(
+        'CURSANDO',
+        'APROVADO',
+        'REPROVADO',
+        'TRANCADO'
+    ) DEFAULT 'CURSANDO',
 
-
-
-CREATE TABLE IF NOT EXISTS frequencia (
-
-    id INT PRIMARY KEY AUTO_INCREMENT,
-
-    discente_matricula VARCHAR(20) NOT NULL,
-
-    disciplina_id INT NOT NULL,
-
-    data_aula DATE NOT NULL,
-
-    presente ENUM('P', 'F') NOT NULL,
+    data_matricula TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
     UNIQUE (
         discente_matricula,
         disciplina_id,
-        data_aula
+        ano,
+        semestre
     ),
 
     FOREIGN KEY (discente_matricula)
@@ -133,16 +139,30 @@ CREATE TABLE IF NOT EXISTS frequencia (
         REFERENCES disciplina(id)
         ON DELETE CASCADE
 );
+CREATE TABLE IF NOT EXISTS frequencia (
 
+    id INT PRIMARY KEY AUTO_INCREMENT,
 
+    matricula_disciplina_id INT NOT NULL,
 
+    data_aula DATE NOT NULL,
+
+    presente BOOLEAN NOT NULL,
+
+    UNIQUE (
+        matricula_disciplina_id,
+        data_aula
+    ),
+
+    FOREIGN KEY (matricula_disciplina_id)
+        REFERENCES matricula_disciplina(id)
+        ON DELETE CASCADE
+);
 CREATE TABLE IF NOT EXISTS nota (
 
     id INT PRIMARY KEY AUTO_INCREMENT,
 
-    discente_matricula VARCHAR(20) NOT NULL,
-
-    disciplina_id INT NOT NULL,
+    matricula_disciplina_id INT NOT NULL,
 
     nota DECIMAL(4,2) NOT NULL,
 
@@ -154,33 +174,27 @@ CREATE TABLE IF NOT EXISTS nota (
     ) NOT NULL,
 
     UNIQUE (
-        discente_matricula,
-        disciplina_id,
+        matricula_disciplina_id,
         bimestre
     ),
 
-    FOREIGN KEY (discente_matricula)
-        REFERENCES discente(matricula)
-        ON DELETE CASCADE,
-
-    FOREIGN KEY (disciplina_id)
-        REFERENCES disciplina(id)
+    FOREIGN KEY (matricula_disciplina_id)
+        REFERENCES matricula_disciplina(id)
         ON DELETE CASCADE
-);
-
-
-
+);  
 CREATE TABLE IF NOT EXISTS solicitacoes (
 
     id INT PRIMARY KEY AUTO_INCREMENT,
 
-    nome VARCHAR(100) NOT NULL,
+    matricula VARCHAR(20) UNIQUE,
+
+    nome VARCHAR(250) NOT NULL,
 
     cpf VARCHAR(11) UNIQUE NOT NULL,
 
     senha VARCHAR(255) NOT NULL,
 
-    email VARCHAR(100) UNIQUE NOT NULL,
+    email VARCHAR(250) UNIQUE NOT NULL,
 
     tipo_usuario ENUM(
         'discente',
