@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS pessoa (
 
     endereco VARCHAR(250),
 
-    celular VARCHAR(50)UNIQUE NOT NULL,
+    celular VARCHAR(50) UNIQUE NOT NULL,
 
     cargo ENUM(
         'docente',
