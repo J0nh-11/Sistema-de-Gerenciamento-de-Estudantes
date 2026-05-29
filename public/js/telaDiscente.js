@@ -51,12 +51,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 3000);
     }
 
-    // 4. Simulação de Logout
+    // ==============================
+    // LOGOUT
+    // ==============================
+
     const logoutBtn = document.querySelector(".logout-btn");
+
     if (logoutBtn) {
         logoutBtn.addEventListener("click", () => {
-            if (confirm("Deseja realmente sair do sistema?")) {
-                window.location.href = "login.html"; // Redireciona para sua tela de login
+            const confirmar = confirm("Deseja sair do sistema?");
+
+            if (confirmar) {
+                localStorage.removeItem("token");
+
+                window.location.href = "/";
             }
         });
     }

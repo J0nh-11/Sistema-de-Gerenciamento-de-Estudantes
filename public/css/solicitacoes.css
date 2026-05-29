@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #f4f7fb;
+
+    padding: 40px;
+}
+
+.container {
+    max-width: 1200px;
+
+    margin: auto;
+}
+
+.topo {
+    margin-bottom: 30px;
+}
+
+.topo h1 {
+    font-size: 36px;
+
+    color: #1e293b;
+
+    margin-bottom: 10px;
+}
+
+.topo p {
+    color: #64748b;
+
+    font-size: 18px;
+}
+
+.lista-solicitacoes {
+    display: grid;
+
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+
+    gap: 20px;
+}
+
+.card {
+    background-color: white;
+
+    border-radius: 16px;
+
+    padding: 24px;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+}
+
+.card h2 {
+    color: #0f172a;
+
+    margin-bottom: 20px;
+}
+
+.info {
+    margin-bottom: 12px;
+
+    color: #475569;
+
+    font-size: 15px;
+}
+
+.info strong {
+    color: #0f172a;
+}
+
+.cargo {
+    display: inline-block;
+
+    margin-top: 10px;
+
+    margin-bottom: 20px;
+
+    padding: 6px 12px;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    background-color: #e2e8f0;
+
+    color: #1e293b;
+}
+
+.botoes {
+    display: flex;
+
+    gap: 10px;
+}
+
+button {
+    flex: 1;
+
+    border: none;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.aprovar {
+    background-color: #16a34a;
+
+    color: white;
+}
+
+.aprovar:hover {
+    background-color: #15803d;
+}
+
+.rejeitar {
+    background-color: #dc2626;
+
+    color: white;
+}
+
+.rejeitar:hover {
+    background-color: #b91c1c;
+}

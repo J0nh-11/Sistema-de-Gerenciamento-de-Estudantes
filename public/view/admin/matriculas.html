@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Realizar Matrícula</title>
+
+        <link rel="stylesheet" href="/css/matriculas.css" />
+    </head>
+
+    <body>
+        <!-- SIDEBAR -->
+        <aside>
+            <div class="profile-container">
+                <div class="avatar">A</div>
+
+                <div class="profile-role">Administrador</div>
+
+                <div class="profile-subtitle">Controle Total do Sistema</div>
+            </div>
+
+            <ul class="menu-list">
+                <li class="menu-item">
+                    <a href="/view/admin/dashboard.html">Dashboard</a>
+                </li>
+
+                <li class="menu-item active">
+                    <a href="#">Gestão Acadêmica</a>
+                </li>
+
+                <li class="menu-item">
+                    <a href="#">Comunicação</a>
+                </li>
+
+                <li class="menu-item">
+                    <a href="#">Relatórios</a>
+                </li>
+
+                <li class="menu-item">
+                    <a href="#">Configurações</a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- MAIN -->
+        <main>
+            <header>
+                <div class="header-title">
+                    <h1>Realizar Matrícula</h1>
+
+                    <p>Matricule alunos em disciplinas acadêmicas.</p>
+                </div>
+
+                <div class="live-date" id="live-date"></div>
+            </header>
+
+            <!-- CARD -->
+            <div class="content-card">
+                <h2 class="card-title">Nova Matrícula</h2>
+
+                <form id="matriculaForm">
+                    <div class="form-grid">
+                        <!-- MATRÍCULA -->
+                        <div class="form-group">
+                            <label for="discente_matricula">
+                                Matrícula do Discente
+                            </label>
+
+                            <input
+                                type="text"
+                                id="discente_matricula"
+                                placeholder="Digite a matrícula"
+                                required />
+                        </div>
+
+                        <!-- DISCIPLINA -->
+                        <div class="form-group">
+                            <label for="disciplina_id"> Disciplina </label>
+
+                            <select id="disciplina_id" required>
+                                <option value="">
+                                    Selecione uma disciplina
+                                </option>
+
+                                <option value="1">Lógica de Programação</option>
+
+                                <option value="2">Banco de Dados I</option>
+
+                                <option value="3">
+                                    Engenharia de Software
+                                </option>
+                            </select>
+                        </div>
+
+                        <!-- ANO -->
+                        <div class="form-group">
+                            <label for="ano">Ano</label>
+
+                            <input
+                                type="number"
+                                id="ano"
+                                placeholder="2026"
+                                required />
+                        </div>
+
+                        <!-- SEMESTRE -->
+                        <div class="form-group">
+                            <label for="semestre"> Semestre </label>
+
+                            <select id="semestre" required>
+                                <option value="">Selecione</option>
+
+                                <option value="1">1º Semestre</option>
+
+                                <option value="2">2º Semestre</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- BOTÕES -->
+                    <div class="buttons-container">
+                        <button type="submit" class="tab-btn btn-green">
+                            Confirmar Matrícula
+                        </button>
+
+                        <button type="reset" class="tab-btn btn-outline">
+                            Limpar Campos
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- TABELA -->
+            <div class="content-card table-card">
+                <h2 class="card-title">Matrículas Realizadas</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aluno</th>
+
+                            <th>Disciplina</th>
+
+                            <th>Ano</th>
+
+                            <th>Semestre</th>
+
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="matriculasTable">
+                        <tr>
+                            <td>João Silva</td>
+
+                            <td>Banco de Dados I</td>
+
+                            <td>2026</td>
+
+                            <td>1º</td>
+
+                            <td>
+                                <span class="status active"> Ativa </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+        <script src="/js/matriculas.js"></script>
+    </body>
+</html>
