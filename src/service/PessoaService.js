@@ -1,13 +1,13 @@
 "use strict";
 
-const PessoaModel = require("../model/PessoaModel");
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const PessoaDao = require("../../src/repository/PessoaDao");
-
-class ServicePessoa {
+const PessoaDao = require("../repository/PessoaDao");
+const geraMatricula = require("./geraMatricula");
+class PessoaService {
     async create(pessoa) {
         // regra de negócio
-        const existente = await pessoaDao.buscarPorMatricula(
+        const existente = await PessoaDao.buscarPorMatricula(
             pessoa.getMatricula(),
         );
 
@@ -20,21 +20,26 @@ class ServicePessoa {
         }
 
         let dados = {
-            matricula: pessoa.getMatricula(),
+            id: pessoa.getId(),
+            matricula: await geraMatricula(
+                pessoa.getId(),
+                pessoa.data_nascimento(),
+            ),
             cpf: pessoa.getCpf(),
             nome: pessoa.getNome(),
             senha: await bcrypt.hash(pessoa.getSenha(), 10),
             email: pessoa.getEmail(),
-            dataNascimento: pessoa.getDataNascimento(),
+            data_nascimento: pessoa.getData_ascimento(),
             endereco: pessoa.getEndereco(),
             cargo: pessoa.getCargo(),
+            celular: pessoa.getCelular(),
         };
 
         return PessoaDao.create(dados);
     }
 
     async list() {
-        return pessoaDao.list();
+        return PessoaDao.list();
     }
 
     async update(pessoa) {
@@ -43,12 +48,14 @@ class ServicePessoa {
         }
 
         let dados = {
+            id: pessoa.getId(),
             cpf: pessoa.getCpf(),
             nome: pessoa.getNome(),
             email: pessoa.getEmail(),
-            dataNascimento: pessoa.getDataNascimento(),
+            data_nascimento: pessoa.getData_nascimento(),
             endereco: pessoa.getEndereco(),
             cargo: pessoa.getCargo(),
+            celular: pessoa.getCelular(),
             matricula: pessoa.getMatricula(),
         };
 
@@ -56,7 +63,7 @@ class ServicePessoa {
             dados.senha = await bcrypt.hash(pessoa.getSenha(), 10);
         }
 
-        return await pessoaDao.update(dados);
+        return await PessoaDao.update(dados);
     }
 
     async deletar(matricula) {
@@ -66,7 +73,7 @@ class ServicePessoa {
         }
 
         // 2. Executar delete
-        const result = await pessoaDao.delete(matricula);
+        const result = await PessoaDao.deletar(matricula);
 
         // 3. Verificar se deletou algo
         if (result.affectedRows === 0) {
@@ -78,7 +85,7 @@ class ServicePessoa {
         };
     }
     async login(email, senha) {
-        const usuario = await pessoaDao.buscarPorEmail(email);
+        const usuario = await PessoaDao.buscarPorEmail(email);
 
         if (!usuario) {
             throw new Error("Email ou senha inválidos");
@@ -89,9 +96,23 @@ class ServicePessoa {
         if (!senhaValida) {
             throw new Error("Email ou senha inválidos");
         }
+        // GERA TOKEN
 
-        return usuario;
+        const token = jwt.sign(
+            {
+                id: usuario.id,
+                matricula: usuario.matricula,
+                email: usuario.email,
+                cargo: usuario.cargo,
+            },
+            process.env.SECRET_SENHA_LOGIN,
+
+            {
+                expiresIn: "1d",
+            },
+        );
+        return token;
     }
 }
 
-module.exports = new ServicePessoa();
+module.exports = new PessoaService();
