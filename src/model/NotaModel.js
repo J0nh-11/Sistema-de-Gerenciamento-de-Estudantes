@@ -24,3 +24,5 @@ class Nota {
         return this.#bimestre;
     }
 }
+
+module.exports = Nota;
