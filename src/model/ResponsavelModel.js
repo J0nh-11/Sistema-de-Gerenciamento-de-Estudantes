@@ -2,9 +2,8 @@
 
 const PessoaModel = require("./PessoaModel");
 
-class DiscenteModel extends PessoaModel {
-    #turma;
-    #curso;
+class ResponsavelModel extends PessoaModel {
+    #parentesco;
 
     constructor(
         id,
@@ -17,8 +16,7 @@ class DiscenteModel extends PessoaModel {
         endereco,
         cargo,
         celular,
-        turma,
-        curso,
+        parentesco,
     ) {
         super(
             id,
@@ -33,17 +31,12 @@ class DiscenteModel extends PessoaModel {
             celular,
         );
 
-        this.#turma = turma;
-        this.#curso = curso;
+        this.#parentesco = parentesco;
     }
 
-    getTurma() {
-        return this.#turma;
-    }
-
-    getCurso() {
-        return this.#curso;
+    getParentesco() {
+        return this.#parentesco;
     }
 }
 
-module.exports = DiscenteModel;
+module.exports = ResponsavelModel;

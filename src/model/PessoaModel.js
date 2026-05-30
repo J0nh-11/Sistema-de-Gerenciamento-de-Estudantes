@@ -1,15 +1,19 @@
 "use strict";
 
 class PessoaModel {
+    #id;
     #matricula;
-    #cpf;
     #nome;
-    #senha;
+    #cpf;
     #email;
     #dataNascimento;
+    #senha;
     #endereco;
     #cargo;
+    #celular;
+
     constructor(
+        id,
         matricula,
         nome,
         cpf,
@@ -18,71 +22,60 @@ class PessoaModel {
         senha,
         endereco,
         cargo,
+        celular,
     ) {
+        this.#id = id;
         this.#matricula = matricula;
-        this.#cpf = cpf;
         this.#nome = nome;
-        this.#senha = senha;
+        this.#cpf = cpf;
         this.#email = email;
         this.#dataNascimento = dataNascimento;
+        this.#senha = senha;
         this.#endereco = endereco;
         this.#cargo = cargo;
+        this.#celular = celular;
     }
-    getNome() {
-        return this.#nome;
+    getId() {
+        return this.#id;
     }
-    setNome(nome) {
-        this.#nome = nome;
-        return this.#nome;
+    setId(novo) {
+        this.#id = novo;
+        return this.#id;
     }
     getMatricula() {
         return this.#matricula;
     }
-    setMatricula(matricula) {
-        this.#matricula = matricula;
-        return this.#matricula;
+
+    getNome() {
+        return this.#nome;
     }
+
     getCpf() {
         return this.#cpf;
     }
-    setCpf(cpf) {
-        this.#cpf = cpf;
-        return this.#cpf;
-    }
-    getSenha() {
-        return this.#senha;
-    }
-    setSenha(senha) {
-        this.#senha = senha;
-        return this.#senha;
-    }
+
     getEmail() {
         return this.#email;
     }
-    setEmail(email) {
-        this.#email = email;
-        return (this.#email = email);
+
+    getSenha() {
+        return this.#senha;
     }
-    getDataNascimento() {
-        return this.#dataNascimento;
-    }
-    setDataNascimento(dataNascimento) {
-        this.#dataNascimento = dataNascimento;
-        return this.#dataNascimento;
-    }
+
     getEndereco() {
         return this.#endereco;
     }
-    setEndereco(endereco) {
-        this.#endereco = endereco;
-        return this.#endereco;
-    }
+
     getCargo() {
         return this.#cargo;
     }
-    setCargo(cargoNovo) {
-        this.#cargo = cargoNovo;
-        return this.#cargo;
+
+    getCelular() {
+        return this.#celular;
+    }
+
+    getDataNascimento() {
+        return this.#dataNascimento;
     }
 }
 
