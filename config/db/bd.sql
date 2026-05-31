@@ -31,8 +31,10 @@ CREATE TABLE IF NOT EXISTS pessoa (
     ON UPDATE CURRENT_TIMESTAMP
 );
 CREATE TABLE IF NOT EXISTS docente (
+    
+    id INT PRIMARY KEY AUTO_INCREMENT,
 
-    matricula VARCHAR(20) PRIMARY KEY,
+    matricula VARCHAR(20),
 
     especialidade VARCHAR(250),
 
@@ -46,6 +48,8 @@ CREATE TABLE IF NOT EXISTS docente (
 );
 CREATE TABLE IF NOT EXISTS discente (
 
+    id INT PRIMARY KEY AUTO_INCREMENT;
+
     matricula VARCHAR(20) PRIMARY KEY,
 
     turma VARCHAR(10),
@@ -57,8 +61,10 @@ CREATE TABLE IF NOT EXISTS discente (
         ON DELETE CASCADE
 );
 CREATE TABLE IF NOT EXISTS responsavel (
+    
+    id INT PRIMARY KEY AUTO_INCREMENT,
 
-    matricula VARCHAR(20) PRIMARY KEY,
+    matricula VARCHAR(20),
 
     parentesco VARCHAR(100) NOT NULL,
 
