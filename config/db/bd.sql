@@ -48,9 +48,9 @@ CREATE TABLE IF NOT EXISTS docente (
 );
 CREATE TABLE IF NOT EXISTS discente (
 
-    id INT PRIMARY KEY AUTO_INCREMENT;
+    id INT PRIMARY KEY AUTO_INCREMENT,
 
-    matricula VARCHAR(20) PRIMARY KEY,
+    matricula VARCHAR(20)   ,
 
     turma VARCHAR(10),
 
