@@ -128,4 +128,4 @@ class MatriculaDisciplinaDao {
     }
 }
 
-module.exports = MatriculaDisciplinaDao;
+module.exports = new MatriculaDisciplinaDao();
