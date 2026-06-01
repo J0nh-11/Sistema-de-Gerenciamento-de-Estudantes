@@ -43,11 +43,10 @@
                             <a href="#"> Configurações </a>
                         </li>
                     </ul>
+                    <div class="sidebar-footer">
+                        <button class="logout-btn">Sair do Sistema</button>
+                    </div>
                 </nav>
-
-                <div class="sidebar-footer">
-                    <button class="logout-btn">Sair do Sistema</button>
-                </div>
             </aside>
 
             <!-- CONTEÚDO -->
@@ -137,124 +136,179 @@
                             disciplinas.
                         </p>
 
-                        <div class="button-stack">
-                            <button class="btn btn-success">
-                                Realizar Matrícula
-                            </button>
+                        <button
+                            class="btn btn-success"
+                            onclick="
+                                window.location.href = '/admin/matriculas/nova'
+                            ">
+                            Realizar Matrícula
+                        </button>
 
-                            <button class="btn btn-info">
-                                Gerenciar Disciplinas
-                            </button>
+                        <button
+                            class="btn btn-info"
+                            onclick="
+                                window.location.href = '/admin/disciplinas'
+                            ">
+                            Gerenciar Disciplinas
+                        </button>
 
-                            <button class="btn btn-outline">
-                                Ver Cursos Disponíveis
-                            </button>
-                        </div>
+                        <button
+                            class="btn btn-outline"
+                            onclick="window.location.href = '/admin/cursos'">
+                            Ver Cursos Disponíveis
+                        </button>
+                        <button
+                            class="btn btn-dark"
+                            onclick="
+                                window.location.href = '/admin/matriculas'
+                            ">
+                            Gerenciar Matrículas
+                        </button>
                     </section>
 
                     <!-- NOTAS -->
                     <section class="card">
-                        <div class="card-header">
-                            <span class="icon">📝</span>
-
-                            <h2>Notas e Desempenho</h2>
-                        </div>
-
-                        <p>
-                            Controle acadêmico completo de rendimento dos
-                            estudantes.
-                        </p>
-
                         <div class="button-stack">
-                            <button class="btn btn-warning">
+                            <h2>Notas e Desempenho</h2>
+                            <button
+                                class="btn btn-warning"
+                                onclick="
+                                    window.location.href = '/admin/notas/lancar'
+                                ">
                                 Lançar Notas
                             </button>
 
-                            <button class="btn btn-success">
+                            <button
+                                class="btn btn-success"
+                                onclick="
+                                    window.location.href = '/admin/boletins'
+                                ">
                                 Gerar Boletins
                             </button>
 
-                            <button class="btn btn-dark">
+                            <button
+                                class="btn btn-dark"
+                                onclick="
+                                    window.location.href = '/admin/desempenho'
+                                ">
                                 Relatórios de Desempenho
+                            </button>
+
+                            <button
+                                class="btn btn-info"
+                                onclick="window.location.href = '/admin/notas'">
+                                Gerenciar Notas
                             </button>
                         </div>
                     </section>
 
                     <!-- FREQUÊNCIA -->
                     <section class="card">
-                        <div class="card-header">
-                            <span class="icon">📅</span>
-
-                            <h2>Controle de Frequência</h2>
-                        </div>
-
-                        <p>
-                            Registre presença e acompanhe frequência escolar dos
-                            alunos.
-                        </p>
-
                         <div class="button-stack">
-                            <button class="btn btn-primary">
+                            <h2>Lançar Frequencia</h2>
+                            <button
+                                class="btn btn-primary"
+                                onclick="
+                                    window.location.href =
+                                        '/admin/frequencias/registrar'
+                                ">
                                 Registrar Frequência
                             </button>
 
-                            <button class="btn btn-info">Ver Relatórios</button>
+                            <button
+                                class="btn btn-info"
+                                onclick="
+                                    window.location.href =
+                                        '/admin/frequencias/relatorios'
+                                ">
+                                Ver Relatórios
+                            </button>
 
-                            <button class="btn btn-outline">
+                            <button
+                                class="btn btn-outline"
+                                onclick="
+                                    window.location.href =
+                                        '/admin/frequencias/historico'
+                                ">
                                 Histórico de Presenças
+                            </button>
+
+                            <button
+                                class="btn btn-dark"
+                                onclick="
+                                    window.location.href = '/admin/frequencias'
+                                ">
+                                Gerenciar Frequências
                             </button>
                         </div>
                     </section>
 
                     <!-- COMUNICAÇÃO -->
                     <section class="card">
-                        <div class="card-header">
-                            <span class="icon">💬</span>
-
-                            <h2>Comunicação Escolar</h2>
-                        </div>
-
-                        <p>
-                            Comunicação entre escola, alunos, docentes e
-                            responsáveis.
-                        </p>
-
                         <div class="button-stack">
-                            <button class="btn btn-warning">
+                            <h2>Comunicação</h2>
+                            <button
+                                class="btn btn-warning"
+                                onclick="
+                                    window.location.href =
+                                        '/admin/mensagens/nova'
+                                ">
                                 Enviar Mensagem
                             </button>
 
-                            <button class="btn btn-dark">
+                            <button
+                                class="btn btn-dark"
+                                onclick="
+                                    window.location.href = '/admin/avisos/novo'
+                                ">
                                 Criar Aviso Geral
                             </button>
 
-                            <button class="btn btn-success">
+                            <button
+                                class="btn btn-success"
+                                onclick="
+                                    window.location.href = '/admin/notificacoes'
+                                ">
                                 Notificações
+                            </button>
+
+                            <button
+                                class="btn btn-info"
+                                onclick="
+                                    window.location.href = '/admin/mensagens'
+                                ">
+                                Histórico de Mensagens
                             </button>
                         </div>
                     </section>
 
                     <!-- RELATÓRIOS -->
                     <section class="card">
-                        <div class="card-header">
-                            <span class="icon">📊</span>
-
-                            <h2>Relatórios Administrativos</h2>
-                        </div>
-
-                        <p>
-                            Visualize dados completos da instituição em tempo
-                            real.
-                        </p>
-
                         <div class="button-stack">
-                            <button class="btn btn-primary">
+                            <h2>Relatórios Administrativos</h2>
+                            <button
+                                class="btn btn-primary"
+                                onclick="
+                                    window.location.href =
+                                        '/admin/relatorios/geral'
+                                ">
                                 Relatório Geral
                             </button>
 
-                            <button class="btn btn-info">Exportar Dados</button>
+                            <button
+                                class="btn btn-info"
+                                onclick="
+                                    window.location.href =
+                                        '/admin/relatorios/exportar'
+                                ">
+                                Exportar Dados
+                            </button>
 
-                            <button class="btn btn-outline">
+                            <button
+                                class="btn btn-outline"
+                                onclick="
+                                    window.location.href = '/admin/estatisticas'
+                                ">
                                 Estatísticas
                             </button>
                         </div>

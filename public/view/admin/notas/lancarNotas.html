@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lançar Notas</title>
+        <link rel="stylesheet" href="/css/admin.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Lançamento de Notas</h1>
+
+            <form>
+                <label>Aluno</label>
+                <select>
+                    <option>Selecione um aluno</option>
+                </select>
+
+                <label>Disciplina</label>
+                <select>
+                    <option>Selecione uma disciplina</option>
+                </select>
+
+                <label>Nota 1</label>
+                <input type="number" step="0.1" min="0" max="10" />
+
+                <label>Nota 2</label>
+                <input type="number" step="0.1" min="0" max="10" />
+
+                <label>Nota Final</label>
+                <input type="number" step="0.1" min="0" max="10" />
+
+                <br /><br />
+
+                <button type="submit" class="btn btn-success">
+                    Salvar Nota
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-outline"
+                    onclick="window.location.href = '/admin'">
+                    Voltar
+                </button>
+            </form>
+        </div>
+    </body>
+</html>

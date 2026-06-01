@@ -1,66 +1,42 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-br">
     <head>
         <meta charset="UTF-8" />
-
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
         <title>Disciplinas</title>
-
-        <link rel="stylesheet" href="/css/matriculas.css" />
+        <link rel="stylesheet" href="/css/admin.css" />
     </head>
-
     <body>
-        <aside>
-            <div class="profile-container">
-                <div class="avatar">A</div>
+        <div class="container">
+            <h1>Gerenciar Disciplinas</h1>
 
-                <div class="profile-role">Administrador</div>
-            </div>
-        </aside>
+            <button class="btn btn-success">Nova Disciplina</button>
 
-        <main>
-            <header>
-                <div class="header-title">
-                    <h1>Gerenciar Disciplinas</h1>
+            <br /><br />
 
-                    <p>Lista de disciplinas cadastradas.</p>
-                </div>
-            </header>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Carga Horária</th>
+                        <th>Docente</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
 
-            <div class="content-card">
-                <div class="table-responsive">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
+                <tbody>
+                    <tr>
+                        <td>Banco de Dados</td>
+                        <td>80h</td>
+                        <td>Maria Souza</td>
 
-                                <th>Disciplina</th>
+                        <td>
+                            <button class="btn btn-warning">Editar</button>
 
-                                <th>Professor</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-
-                                <td>Banco de Dados I</td>
-
-                                <td>João Silva</td>
-                            </tr>
-
-                            <tr>
-                                <td>2</td>
-
-                                <td>Redes</td>
-
-                                <td>Maria Souza</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </main>
+                            <button class="btn btn-danger">Excluir</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </body>
 </html>

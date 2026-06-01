@@ -2,19 +2,21 @@
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8" />
-        <title>Gerenciar Matrículas</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Gerenciar Frequências</title>
         <link rel="stylesheet" href="/css/admin.css" />
     </head>
     <body>
         <div class="container">
-            <h1>Matrículas Acadêmicas</h1>
+            <h1>Gerenciar Frequências</h1>
 
             <table>
                 <thead>
                     <tr>
                         <th>Aluno</th>
                         <th>Disciplina</th>
-                        <th>Status</th>
+                        <th>Data</th>
+                        <th>Presença</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -22,13 +24,17 @@
                 <tbody>
                     <tr>
                         <td>João Silva</td>
+
                         <td>Banco de Dados</td>
-                        <td>Ativa</td>
+
+                        <td>25/05/2026</td>
+
+                        <td>Presente</td>
 
                         <td>
-                            <button class="btn btn-info">Visualizar</button>
+                            <button class="btn btn-warning">Editar</button>
 
-                            <button class="btn btn-danger">Cancelar</button>
+                            <button class="btn btn-danger">Remover</button>
                         </td>
                     </tr>
                 </tbody>

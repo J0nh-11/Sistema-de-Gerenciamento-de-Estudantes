@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Registrar Frequência</title>
+        <link rel="stylesheet" href="/css/admin.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Registrar Frequência</h1>
+
+            <form>
+                <label>Disciplina</label>
+                <select>
+                    <option>Selecione uma disciplina</option>
+                </select>
+
+                <label>Data da Aula</label>
+                <input type="date" />
+
+                <br /><br />
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aluno</th>
+                            <th>Presente</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>João Silva</td>
+                            <td>
+                                <input type="checkbox" checked />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Maria Souza</td>
+                            <td>
+                                <input type="checkbox" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <br />
+
+                <button type="submit" class="btn btn-success">
+                    Salvar Frequência
+                </button>
+            </form>
+        </div>
+    </body>
+</html>
+    
