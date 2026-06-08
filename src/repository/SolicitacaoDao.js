@@ -5,9 +5,21 @@ const connectionFactory = require("../../config/db/ConnectionFactory");
 class SolicitacaoDao {
     async create(solicitacao) {
         // para acelerar farei os códigos sql em váriaveis;
+        console.log("SOLICITAÇÃO:", solicitacao);
+
         const sql = `
-        INSERT INTO solicitacoes (nome, cpf, email, senha, cargo)
-        VALUES (?,?,?,?,?);`;
+INSERT INTO solicitacoes (
+    nome,
+    cpf,
+    email,
+    senha,
+    cargo,
+    data_nascimento,
+    celular,
+    endereco
+)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+`;
 
         const valores = [
             solicitacao.nome,
@@ -15,8 +27,10 @@ class SolicitacaoDao {
             solicitacao.email,
             solicitacao.senha,
             solicitacao.cargo,
+            solicitacao.data_nascimento,
+            solicitacao.celular,
+            solicitacao.endereco,
         ];
-
         const [result] = await connectionFactory
             .getConnection()
             .execute(sql, valores);
@@ -31,8 +45,11 @@ class SolicitacaoDao {
                     cpf,
                     email,
                     cargo,
-                    status
-                FROM solicitacao
+                    status,
+                    data_nascimento,
+                    celular,
+                    endereco
+                FROM solicitacoes
                 WHERE status = 'pendente'
             `);
 
@@ -42,7 +59,7 @@ class SolicitacaoDao {
     async aprovar(id) {
         const [result] = await connectionFactory.getConnection().execute(
             `
-                UPDATE solicitacao
+                UPDATE solicitacoes
                 SET status = 'aprovado'
                 WHERE id = ?
             `,
@@ -54,7 +71,7 @@ class SolicitacaoDao {
     async rejeitar(id) {
         const [result] = await connectionFactory.getConnection().execute(
             `
-                UPDATE solicitacao_cadastro
+                UPDATE solicitacoes
                 SET status = 'rejeitado'
                 WHERE id = ?
             `,
@@ -67,7 +84,7 @@ class SolicitacaoDao {
         const [rows] = await connectionFactory.getConnection().execute(
             `
             SELECT *
-            FROM solicitacao
+            FROM solicitacoes
             WHERE id = ?
         `,
             [id],
@@ -76,15 +93,32 @@ class SolicitacaoDao {
         return rows[0];
     }
     async buscarPorTipo(cargo) {
-        const sql = `
-            SELECT 
-            FROM solicitacao
+        const [rows] = await connectionFactory.getConnection().execute(
+            `
+            SELECT id, nome, cpf, email, cargo, status
+            FROM solicitacoes
             WHERE cargo = ?
-        `;
-        const values = [solicitacao.cargo];
-        const result = await connectionFactory
+        `,
+            [cargo],
+        );
+        return rows;
+    }
+    async buscarPorCpf(cpf) {
+        const [rows] = await connectionFactory.getConnection().execute(
+            `
+            SELECT id, nome, cpf, email, cargo, status
+            FROM solicitacoes
+            WHERE cpf = ?
+        `,
+            [cpf],
+        );
+        return rows[0];
+    }
+    async deletar(id) {
+        const [rows] = await connectionFactory
             .getConnection()
-            .execute(sql, values);
+            .execute(`DELETE FROM solicitacoes WHERE id = ?`, [id]);
+        return rows;
     }
 }
 

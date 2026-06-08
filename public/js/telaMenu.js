@@ -69,11 +69,10 @@ if (form) {
 
             const resposta = await fetch("/api/login", {
                 method: "POST",
-
                 headers: {
                     "Content-Type": "application/json",
                 },
-
+                credentials: "include", // ESSENCIAL
                 body: JSON.stringify({
                     email,
                     senha,
@@ -84,9 +83,7 @@ if (form) {
             const dados = await resposta.json();
 
             // Login OK
-            if (dados.token) {
-                localStorage.setItem("token", dados.token);
-
+            if (dados.sucesso) {
                 // Redirecionamentos
                 switch (cargoSelecionado) {
                     case "admin":

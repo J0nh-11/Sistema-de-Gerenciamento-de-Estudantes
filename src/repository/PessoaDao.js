@@ -9,6 +9,16 @@ class PessoaDao {
         return result;
     }
 
+    async buscarPorEmail(email) {
+        const [result] = await connectionFactory.getConnection().execute(
+            `
+                SELECT id, matricula, cpf, nome, senha, email, data_nascimento, endereco, celular, cargo FROM pessoa WHERE email = ?
+                `,
+            [email],
+        );
+        return result[0];
+    }
+
     async create(pessoa) {
         const sql = `INSERT INTO pessoa (matricula, cpf, nome, senha, email, data_nascimento, endereco, celular,cargo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
         const values = [
@@ -65,15 +75,6 @@ class PessoaDao {
         const [result] = await connectionFactory
             .getConnection()
             .execute("SELECT * FROM pessoa WHERE matricula = ?", [matricula]);
-
-        return result[0]; // retorna o primeiro resultado
-    }
-    async buscarPorEmail(email) {
-        const sql = `SELECT id, matricula, cpf, nome, senha, email, data_nascimento, endereco, celular,cargo FROM pessoa WHERE email = ?`;
-        const values = [email];
-        const [result] = await connectionFactory
-            .getConnection()
-            .execute(sql, values);
 
         return result[0]; // retorna o primeiro resultado
     }

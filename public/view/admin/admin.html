@@ -24,19 +24,18 @@
                 <nav class="sidebar-nav">
                     <ul>
                         <li>
-                            <a href="#" class="active"> Dashboard </a>
+                            <a href="/admin/dashboard" class="active">
+                                Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/mensagens/nova">
+                                Comunicação
+                            </a>
                         </li>
 
                         <li>
-                            <a href="#"> Gestão Académica </a>
-                        </li>
-
-                        <li>
-                            <a href="#"> Comunicação </a>
-                        </li>
-
-                        <li>
-                            <a href="#"> Relatórios </a>
+                            <a href="/admin/desempenho"> Relatórios </a>
                         </li>
 
                         <li>
@@ -139,9 +138,10 @@
                         <button
                             class="btn btn-success"
                             onclick="
-                                window.location.href = '/admin/matriculas/nova'
+                                window.location.href =
+                                    '/admin/gerenciarMatriculas.html'
                             ">
-                            Realizar Matrícula
+                            Gerenciar matriculas
                         </button>
 
                         <button
@@ -278,38 +278,6 @@
                                     window.location.href = '/admin/mensagens'
                                 ">
                                 Histórico de Mensagens
-                            </button>
-                        </div>
-                    </section>
-
-                    <!-- RELATÓRIOS -->
-                    <section class="card">
-                        <div class="button-stack">
-                            <h2>Relatórios Administrativos</h2>
-                            <button
-                                class="btn btn-primary"
-                                onclick="
-                                    window.location.href =
-                                        '/admin/relatorios/geral'
-                                ">
-                                Relatório Geral
-                            </button>
-
-                            <button
-                                class="btn btn-info"
-                                onclick="
-                                    window.location.href =
-                                        '/admin/relatorios/exportar'
-                                ">
-                                Exportar Dados
-                            </button>
-
-                            <button
-                                class="btn btn-outline"
-                                onclick="
-                                    window.location.href = '/admin/estatisticas'
-                                ">
-                                Estatísticas
                             </button>
                         </div>
                     </section>

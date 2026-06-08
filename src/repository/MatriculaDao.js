@@ -2,7 +2,7 @@
 
 const connectionFactory = require("../../config/db/ConnectionFactory");
 
-class MatriculaDisciplinaDao {
+class Matricula {
     async create(dados) {
         const sql = `
             INSERT INTO matricula_disciplina (
@@ -31,31 +31,21 @@ class MatriculaDisciplinaDao {
     async list() {
         const sql = `
             SELECT
-                md.id,
-
-                p.nome AS aluno,
-
-                d.nome AS disciplina,
-
-                md.ano,
-
-                md.semestre,
-
-                md.status
-
-            FROM matricula_disciplina md
-
-            INNER JOIN discente di
-                ON di.matricula =
-                md.discente_matricula
-
-            INNER JOIN pessoa p
-                ON p.matricula =
-                di.matricula
-
-            INNER JOIN disciplina d
-                ON d.id =
-                md.disciplina_id
+    md.id,
+    p.nome AS aluno,
+    p.cpf,
+    di.curso,
+    di.serie,
+    di.turma,
+    d.nome AS disciplina,
+    md.status
+FROM matricula_disciplina md
+INNER JOIN discente di
+    ON di.matricula = md.discente_matricula
+INNER JOIN pessoa p
+    ON p.matricula = di.matricula
+INNER JOIN disciplina d
+    ON d.id = md.disciplina_id
         `;
 
         const [result] = await connectionFactory.getConnection().execute(sql);
@@ -64,7 +54,7 @@ class MatriculaDisciplinaDao {
     }
     async deletar(id) {
         const sql = `
-            SELECT id FROM matricula where id = ?;
+            DELETE FROM matricula_disciplina WHERE id = ?
         `;
         const values = [id];
         const [result] = await connectionFactory
@@ -74,4 +64,4 @@ class MatriculaDisciplinaDao {
     }
 }
 
-module.exports = new MatriculaDisciplinaDao();
+module.exports = new Matricula();

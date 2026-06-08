@@ -4,7 +4,42 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const PessoaDao = require("../repository/PessoaDao");
 const geraMatricula = require("./geraMatricula");
+
 class PessoaService {
+    async login(email, senha) {
+        console.log("EMAIL DIGITADO:", email);
+
+        const usuario = await PessoaDao.buscarPorEmail(email);
+
+        console.log("USUARIO:", usuario);
+
+        if (!usuario) {
+            throw new Error("Email ou senha inválidos");
+        }
+
+        console.log("SENHA DIGITADA:", senha);
+        console.log("SENHA BANCO:", usuario.senha);
+
+        const senhaValida = await bcrypt.compare(senha, usuario.senha);
+
+        console.log("SENHA VALIDA:", senhaValida);
+
+        if (!senhaValida) {
+            throw new Error("Email ou senha inválidos");
+        }
+
+        const token = jwt.sign(
+            {
+                id: usuario.id,
+                email: usuario.email,
+                cargo: usuario.cargo,
+            },
+            process.env.SECRET_SENHA_LOGIN,
+            { expiresIn: "1d" },
+        );
+
+        return token;
+    }
     async create(pessoa) {
         // regra de negócio
         const existente = await PessoaDao.buscarPorMatricula(
@@ -23,13 +58,13 @@ class PessoaService {
             id: pessoa.getId(),
             matricula: await geraMatricula(
                 pessoa.getId(),
-                pessoa.data_nascimento(),
+                pessoa.getDataNascimento(),
             ),
             cpf: pessoa.getCpf(),
             nome: pessoa.getNome(),
             senha: await bcrypt.hash(pessoa.getSenha(), 10),
             email: pessoa.getEmail(),
-            data_nascimento: pessoa.getData_ascimento(),
+            data_nascimento: pessoa.getDataNascimento(),
             endereco: pessoa.getEndereco(),
             cargo: pessoa.getCargo(),
             celular: pessoa.getCelular(),
@@ -38,8 +73,8 @@ class PessoaService {
         return PessoaDao.create(dados);
     }
 
-    async list() {
-        return PessoaDao.list();
+    async list(opcoes = {}) {
+        return await PessoaDao.list(opcoes);
     }
 
     async update(pessoa) {
@@ -52,11 +87,14 @@ class PessoaService {
             cpf: pessoa.getCpf(),
             nome: pessoa.getNome(),
             email: pessoa.getEmail(),
-            data_nascimento: pessoa.getData_nascimento(),
+            data_nascimento: pessoa.getDataNascimento(),
             endereco: pessoa.getEndereco(),
             cargo: pessoa.getCargo(),
             celular: pessoa.getCelular(),
-            matricula: pessoa.getMatricula(),
+            matricula: await geraMatricula(
+                pessoa.getId(),
+                pessoa.getDataNascimento(),
+            ),
         };
 
         if (pessoa.getSenha()) {
@@ -83,35 +121,6 @@ class PessoaService {
         return {
             message: "Pessoa deletada com sucesso",
         };
-    }
-    async login(email, senha) {
-        const usuario = await PessoaDao.buscarPorEmail(email);
-
-        if (!usuario) {
-            throw new Error("Email ou senha inválidos");
-        }
-
-        const senhaValida = await bcrypt.compare(senha, usuario.senha);
-
-        if (!senhaValida) {
-            throw new Error("Email ou senha inválidos");
-        }
-        // GERA TOKEN
-
-        const token = jwt.sign(
-            {
-                id: usuario.id,
-                matricula: usuario.matricula,
-                email: usuario.email,
-                cargo: usuario.cargo,
-            },
-            process.env.SECRET_SENHA_LOGIN,
-
-            {
-                expiresIn: "1d",
-            },
-        );
-        return token;
     }
 }
 

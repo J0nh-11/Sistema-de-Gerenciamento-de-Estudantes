@@ -82,7 +82,7 @@ class MatriculaDisciplinaDao {
         return result;
     }
     async buscarPorId(id) {
-        const [rows] = await connectionFactory.getConnection().execute(
+        const [result] = await connectionFactory.getConnection().execute(
             `
             SELECT *
             FROM matricula_disciplina
@@ -91,7 +91,7 @@ class MatriculaDisciplinaDao {
             [id],
         );
 
-        return rows[0];
+        return result[0];
     }
     async buscarPorDiscente(matricula) {
         const [rows] = await connectionFactory.getConnection().execute(

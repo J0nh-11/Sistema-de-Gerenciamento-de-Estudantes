@@ -11,8 +11,7 @@ function gerarMatricula(id, dataNascimento) {
 
     const idFormatado = String(id).padStart(2, "0");
 
-    return `${anoAtual}${idFormatado}${anoNascimento}${idade}`;
+    return `${anoAtual}${String(id).padStart(6, "0")}`;
 }
 
-console.log(gerarMatricula(500, 15072008));
 module.exports = gerarMatricula;

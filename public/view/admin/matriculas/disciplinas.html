@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Gerenciar Disciplinas - Sistema Escolar</title>
+        <link rel="stylesheet" href="/css/disciplinas.css" />
+    </head>
+
+    <body>
+        <div class="dashboard-container">
+            <aside class="sidebar">
+                <div class="profile-info">
+                    <div class="avatar-circle">A</div>
+                    <h3>Administrador</h3>
+                    <p>Controle Total do Sistema</p>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <ul>
+                        <li><a href="/admin/dashboard">Dashboard</a></li>
+                        <li>
+                            <a href="/admin/gestao" class="active"
+                                >Gestão Académica</a
+                            >
+                        </li>
+                        <li><a href="/admin/comunicacao">Comunicação</a></li>
+                        <li><a href="/admin/relatorios">Relatórios</a></li>
+                        <li>
+                            <a href="/admin/configuracoes">Configurações</a>
+                        </li>
+                    </ul>
+                    <div class="sidebar-footer">
+                        <button class="logout-btn" id="btn-logout">
+                            Sair do Sistema
+                        </button>
+                    </div>
+                </nav>
+            </aside>
+
+            <main class="main-content">
+                <header class="top-header">
+                    <div>
+                        <h1>Gerenciar Disciplinas</h1>
+                        <p class="subtitle">
+                            Cadastro, edição e atribuição de carga horária e
+                            docentes
+                        </p>
+                    </div>
+                    <div class="date-display" id="current-date">
+                        Carregando data...
+                    </div>
+                </header>
+
+                <div class="grid-layout">
+                    <section class="card">
+                        <div class="card-header">
+                            <span class="icon">➕</span>
+                            <h2>Nova Disciplina</h2>
+                        </div>
+                        <p>
+                            Registre uma nova matéria na matriz curricular
+                            preenchendo as informações básicas.
+                        </p>
+
+                        <div class="button-stack">
+                            <button
+                                class="btn btn-success"
+                                onclick="
+                                    window.location.href =
+                                        '/admin/disciplinas/nova'
+                                ">
+                                Cadastrar Nova Disciplina
+                            </button>
+                            <button
+                                class="btn btn-outline"
+                                onclick="
+                                    window.location.href = '/admin/dashboard'
+                                ">
+                                Voltar ao Dashboard
+                            </button>
+                        </div>
+                    </section>
+
+                    <section class="card card-wide">
+                        <div class="card-header">
+                            <span class="icon">📖</span>
+                            <h2>Disciplinas Cadastradas</h2>
+                        </div>
+                        <p>
+                            Confira as disciplinas ativas no período letivo
+                            atual e seus respectivos professores.
+                        </p>
+
+                        <div class="table-container">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Nome da Disciplina</th>
+                                        <th>Carga Horária</th>
+                                        <th>Docente Atribuído</th>
+                                        <th class="text-right">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>MAT-101</td>
+                                        <td>
+                                            <strong>Matemática Álgebra</strong>
+                                        </td>
+                                        <td>80h</td>
+                                        <td>Prof. Carlos Silva</td>
+                                        <td class="text-right">
+                                            <button
+                                                class="btn btn-warning btn-sm btn-edit"
+                                                data-id="MAT-101">
+                                                Editar
+                                            </button>
+                                            <button
+                                                class="btn btn-dark btn-sm btn-delete"
+                                                data-id="MAT-101">
+                                                Remover
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>HIS-202</td>
+                                        <td>
+                                            <strong
+                                                >História Contemporânea</strong
+                                            >
+                                        </td>
+                                        <td>60h</td>
+                                        <td>Profª. Ana Souza</td>
+                                        <td class="text-right">
+                                            <button
+                                                class="btn btn-warning btn-sm btn-edit"
+                                                data-id="HIS-202">
+                                                Editar
+                                            </button>
+                                            <button
+                                                class="btn btn-dark btn-sm btn-delete"
+                                                data-id="HIS-202">
+                                                Remover
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>BIO-303</td>
+                                        <td>
+                                            <strong>Biologia Celular</strong>
+                                        </td>
+                                        <td>80h</td>
+                                        <td>
+                                            <span class="unassigned"
+                                                >Não atribuído</span
+                                            >
+                                        </td>
+                                        <td class="text-right">
+                                            <button
+                                                class="btn btn-info btn-sm btn-assign"
+                                                data-id="BIO-303">
+                                                Atribuir
+                                            </button>
+                                            <button
+                                                class="btn btn-warning btn-sm btn-edit"
+                                                data-id="BIO-303">
+                                                Editar
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+
+        <script src="/js/disciplinas.js"></script>
+    </body>
+</html>

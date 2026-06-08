@@ -13,7 +13,11 @@ class Nota {
     }
     async create(dados) {
         const sql = `INSERT INTO nota( matricula_disciplina_id, nota, bimestre ) VALUES(?,?,?);`;
-        const values = [dados.nota, dados.bimestre];
+        const values = [
+            dados.matricula_disciplina_id,
+            dados.nota,
+            dados.bimestre,
+        ];
         const [result] = await connectionFactory
             .getConnection()
             .execute(sql, values);
@@ -26,10 +30,10 @@ class Nota {
                      bimestre = ?
                      where id = ?`;
         const values = [
+            dados.matricula_disciplina_id,
             dados.nota,
             dados.bimestre,
-            dados.matricula_disciplina_id,
-            nota.id,
+            dados.id,
         ];
         const [result] = await connectionFactory
             .getConnection()
@@ -39,7 +43,7 @@ class Nota {
     async deletar(id) {
         const [result] = await connectionFactory
             .getConnection()
-            .execute("DELETE from pessoa where id = ?", [id]);
+            .execute("DELETE FROM nota WHERE id = ?", [id]);
         return result;
     }
     async buscarPorMatriculaDisciplina(matriculaDisciplinaId) {

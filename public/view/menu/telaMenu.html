@@ -31,7 +31,7 @@
                 </button>
             </div>
 
-            <form id="loginForm" method="post">
+            <form id="loginForm" method="post" action="/api/login">
                 <p id="user-context">Acesso para <strong>Aluno</strong></p>
 
                 <div class="input-group">
@@ -40,6 +40,7 @@
                     <input
                         type="email"
                         id="email"
+                        name="email"
                         placeholder="Digite seu acesso"
                         required />
                 </div>
@@ -50,6 +51,7 @@
                     <input
                         type="password"
                         id="senha"
+                        name="senha"
                         placeholder="••••••••"
                         required />
                 </div>

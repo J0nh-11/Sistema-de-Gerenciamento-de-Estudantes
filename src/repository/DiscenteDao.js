@@ -9,15 +9,14 @@ class DiscenteDao {
             discente.curso, discente.turma
             FROM discente
             INNER JOIN pessoa
-            ON discente.matricula = matricula;
-            `;
+            ON discente.matricula = pessoa.matricula`;
 
         const [result] = await connectionFactory.getConnection().execute(sql);
         return result;
     }
     async createDiscente(discente) {
         const sql = `INSERT INTO discente(matricula, turma, curso)
-                      VALUES(?,?,?,?)`;
+                      VALUES(?,?,?)`;
         const values = [discente.matricula, discente.turma, discente.curso];
         const [result] = await connectionFactory
             .getConnection()
@@ -27,18 +26,22 @@ class DiscenteDao {
     async update(discente) {
         const sql = `UPDATE discente set
         turma = ?,
-        curso = ?,
-        matricula = ?
+        curso = ?
         WHERE matricula = ?
         `;
         const values = [discente.turma, discente.curso, discente.matricula];
+        const [result] = await connectionFactory
+            .getConnection()
+            .execute(sql, values);
+        return result;
     }
     async deletar(id) {
-        const sql = ` SELECT discente.id FROM docente where id = ?`;
+        const sql = `DELETE FROM discente WHERE id = ?`;
         const values = [id];
         const [result] = await connectionFactory
             .getConnection()
             .execute(sql, values);
+        return result;
     }
 }
 

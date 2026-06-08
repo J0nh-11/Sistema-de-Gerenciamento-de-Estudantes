@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Cursos</title>
+        <link rel="stylesheet" href="/css/admin.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Cursos Disponíveis</h1>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Curso</th>
+                        <th>Quantidade de Disciplinas</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Análise e Desenvolvimento de Sistemas</td>
+                        <td>12</td>
+
+                        <td>
+                            <button class="btn btn-info">Visualizar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Cursos Disponíveis - Sistema Escolar</title>
+        <!-- Mantendo a consistência com os caminhos do seu sistema -->
+        <!-- <link rel="stylesheet" href="/css/admin.css" /> -->
+        <link rel="stylesheet" href="/css/cursos.css" />
+
+    </head>
+
+    <body>
+        <div class="dashboard-container">
+            <!-- SIDEBAR (Navegação Padrão do Sistema) -->
+            <aside class="sidebar">
+                <div class="profile-info">
+                    <div class="avatar-circle">A</div>
+                    <h3>Administrador</h3>
+                    <p>Controle Total do Sistema</p>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <ul>
+                        <li><a href="/admin/dashboard"> Dashboard </a></li>
+                        <li>
+                            <a href="#" class="active"> Gestão Acadêmica </a>
+                        </li>
+                        <li><a href="#"> Comunicação </a></li>
+                        <li><a href="#"> Relatórios </a></li>
+                        <li><a href="#"> Configurações </a></li>
+                    </ul>
+                    <div class="sidebar-footer">
+                        <button class="logout-btn">Sair do Sistema</button>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- CONTEÚDO PRINCIPAL -->
+            <main class="main-content">
+                <!-- TOPO -->
+                <header class="top-header">
+                    <div>
+                        <div class="breadcrumb">
+                            <a href="/admin/dashboard">Dashboard</a> &gt;
+                            <span>Cursos Disponíveis</span>
+                        </div>
+                        <h1>Cursos Ofertados</h1>
+                        <p class="subtitle">
+                            Lista e detalhamento dos níveis de ensino ativos na
+                            instituição.
+                        </p>
+                    </div>
+
+                    <div class="top-actions">
+                        <button
+                            class="btn btn-outline"
+                            onclick="window.location.href = '/admin/dashboard'">
+                            Voltar ao Painel
+                        </button>
+                        <button class="btn btn-success" id="btn-criar-curso">
+                            + Criar Curso
+                        </button>
+                    </div>
+                </header>
+
+                <!-- ÁREA DE FILTROS -->
+                <section class="card filter-card">
+                    <div class="filter-grid">
+                        <div class="filter-group">
+                            <label for="search-curso">Pesquisar Curso</label>
+                            <input
+                                type="text"
+                                id="search-curso"
+                                placeholder="Digite o nome ou código do curso..." />
+                        </div>
+                        <div class="filter-group">
+                            <label for="filter-segmento"
+                                >Filtrar por Segmento</label
+                            >
+                            <select id="filter-segmento">
+                                <option value="todos">
+                                    Todos os Segmentos
+                                </option>
+                                <option value="fundamental-1">
+                                    Ensino Fundamental I
+                                </option>
+                                <option value="fundamental-2">
+                                    Ensino Fundamental II
+                                </option>
+                                <option value="medio">Ensino Médio</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- GRID DOS CURSOS -->
+                <section class="courses-grid" id="courses-container">
+                    <!-- Os cards serão preenchidos dinamicamente por JavaScript -->
+                </section>
+            </main>
+        </div>
+
+        <!-- MODAL DE VISUALIZAÇÃO DE DISCIPLINAS -->
+        <div class="modal" id="modal-disciplinas">
+            <div class="modal-content">
+                <span class="modal-close" id="btn-close-modal">&times;</span>
+                <h3 id="modal-course-title">Grade Curricular</h3>
+                <ul class="subjects-list" id="modal-subjects-list">
+                    <!-- Preenchido via JS -->
+                </ul>
+            </div>
+        </div>
+
+        <!-- SCRIPT DE INTELIGÊNCIA DA PÁGINA -->
+        <script src="/js/cursos.js">
+           
+        </script>
+    </body>
+</html>

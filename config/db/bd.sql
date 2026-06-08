@@ -52,6 +52,8 @@ CREATE TABLE IF NOT EXISTS discente (
 
     matricula VARCHAR(20)   ,
 
+    serie VARCHAR(100),
+
     turma VARCHAR(10),
 
     curso VARCHAR(100),
@@ -188,26 +190,23 @@ CREATE TABLE IF NOT EXISTS nota (
         REFERENCES matricula_disciplina(id)
         ON DELETE CASCADE
 );  
-CREATE TABLE IF NOT EXISTS solicitacoes (
-
+CREATE TABLE IF not EXISTS solicitacoes  (
     id INT PRIMARY KEY AUTO_INCREMENT,
-
-    matricula VARCHAR(20) UNIQUE,
-
     nome VARCHAR(250) NOT NULL,
-
     cpf VARCHAR(11) UNIQUE NOT NULL,
-
+    email VARCHAR(250) UNIQUE NOT NULL,
     senha VARCHAR(255) NOT NULL,
 
-    email VARCHAR(250) UNIQUE NOT NULL,
-
-    tipo_usuario ENUM(
+    cargo ENUM(
         'discente',
         'docente',
         'responsavel',
         'admin'
     ) NOT NULL,
+
+    data_nascimento DATE NOT NULL,
+    celular VARCHAR(50) NOT NULL,
+    endereco VARCHAR(250),
 
     status ENUM(
         'PENDENTE',
@@ -216,4 +215,27 @@ CREATE TABLE IF NOT EXISTS solicitacoes (
     ) DEFAULT 'PENDENTE',
 
     data_solicitacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE if not EXISTS conversa (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE if not EXISTS mensagem (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+
+    conversa_id INT NOT NULL,
+
+    remetente_matricula VARCHAR(20) NOT NULL,
+
+    texto TEXT NOT NULL,
+
+    enviado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (conversa_id)
+        REFERENCES conversa(id)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY (remetente_matricula)
+        REFERENCES pessoa(matricula)
+        ON DELETE CASCADE
 );

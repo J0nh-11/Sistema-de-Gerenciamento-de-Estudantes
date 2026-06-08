@@ -32,7 +32,7 @@ class ResponsavelDao {
             .getConnection()
             .execute(sql, values);
 
-        return result.insertId;
+        return result;
     }
 
     async update(responsavel) {
@@ -48,7 +48,7 @@ class ResponsavelDao {
             .getConnection()
             .execute(sql, values);
 
-        return result.affectedRows;
+        return result;
     }
 
     async deletar(matricula) {
@@ -58,7 +58,7 @@ class ResponsavelDao {
                 matricula,
             ]);
 
-        return result.affectedRows;
+        return result;
     }
 }
 

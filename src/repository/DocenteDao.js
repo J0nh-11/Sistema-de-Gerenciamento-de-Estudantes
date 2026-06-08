@@ -9,8 +9,7 @@ class DocenteDao {
             docente.formacao, docente.especialidade
             FROM docente
             INNER JOIN pessoa
-            ON docente.matricula = matricula;
-            `;
+            ON docente.matricula = pessoa.matricula`;
 
         const [result] = await connectionFactory.getConnection().execute(sql);
         return result;
@@ -20,7 +19,12 @@ class DocenteDao {
                     INSERT INTO docente(matricula, especialidade, formacao, salario)
                     VALUES(?,?,?,?)
                     `;
-        const values = [matricula, especialidade, formacao, salario];
+        const values = [
+            docente.matricula,
+            docente.especialidade,
+            docente.formacao,
+            docente.salario,
+        ];
         const [result] = await connectionFactory
             .getConnection()
             .execute(sql, values);
@@ -30,22 +34,27 @@ class DocenteDao {
         const sql = `UPDATE docente set
         especialidade = ?,
         formacao = ?,
-        salario = ?,
-        matricula = ?
+        salario = ?
         WHERE matricula = ?
         `;
         const values = [
             docente.especialidade,
             docente.formacao,
             docente.salario,
+            docente.matricula,
         ];
+        const [result] = await connectionFactory
+            .getConnection()
+            .execute(sql, values);
+        return result;
     }
     async deletar(id) {
-        const sql = ` SELECT id FROM docente where id = ?`;
+        const sql = `DELETE FROM docente WHERE id = ?`;
         const values = [id];
         const [result] = await connectionFactory
             .getConnection()
             .execute(sql, values);
+        return result;
     }
 }
 

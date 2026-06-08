@@ -6,14 +6,15 @@
         <title>Cadastro de Usuário</title>
         <link rel="stylesheet" href="/css/cadastro.css" />
     </head>
+
     <body>
-        <form action="/cadastrar" method="POST">
-            <div form-group>
-                <h2>Cadastro de Usuário</h2>
+        <form action="/api/cadastros" method="POST">
+            <h2>Cadastro de Usuário</h2>
+
+            <div class="form-group">
                 <label for="nome">Nome:</label>
                 <input type="text" id="nome" name="nome" required />
             </div>
-            <br />
 
             <div class="form-group">
                 <label for="cpf">CPF:</label>
@@ -21,45 +22,79 @@
                     type="text"
                     id="cpf"
                     name="cpf"
-                    placeholder="000.000.000-00"
+                    placeholder="00000000000"
                     required />
             </div>
-            <br />
 
             <div class="form-group">
                 <label for="email">E-mail:</label>
                 <input type="email" id="email" name="email" required />
             </div>
-            <br />
 
             <div class="form-group">
                 <label for="senha">Senha:</label>
                 <input type="password" id="senha" name="senha" required />
             </div>
-            <br />
 
-            <div>
-                <label for="tipo_usuario">Tipo de Usuário:</label>
-                <select id="tipo_usuario" name="tipo_usuario" required>
+            <div class="form-group">
+                <label for="data_nascimento"> Data de Nascimento: </label>
+                <input
+                    type="date"
+                    id="data_nascimento"
+                    name="data_nascimento"
+                    required />
+            </div>
+
+            <div class="form-group">
+                <label for="celular">Celular:</label>
+                <input
+                    type="tel"
+                    id="celular"
+                    name="celular"
+                    placeholder="82999999999"
+                    required />
+            </div>
+
+            <div class="form-group">
+                <label for="endereco">Endereço:</label>
+                <input
+                    type="text"
+                    id="endereco"
+                    name="endereco"
+                    placeholder="Rua, número, bairro" />
+            </div>
+
+            <div class="form-group">
+                <label for="cargo"> Tipo de Usuário: </label>
+
+                <select id="cargo" name="cargo" required>
                     <option value="" disabled selected>
                         Selecione uma opção
                     </option>
+
                     <option value="discente">Discente</option>
+
                     <option value="docente">Docente</option>
+
                     <option value="responsavel">Responsável</option>
+
                     <option value="admin">Administrador</option>
                 </select>
             </div>
-            <br />
+
             <div
                 id="notificacao-sucesso"
                 class="alerta-sucesso"
                 style="display: none">
-                 Cadastro realizado com sucesso!
+                Cadastro realizado com sucesso!
             </div>
-            <div>
-                <button type="submit">Cadastrar</button>
-            </div>
+
+            <button
+                type="submit"
+                class="btn btn-dark"
+                onclick="window.location.href = '/'">
+                >Cadastrar
+            </button>
         </form>
     </body>
 </html>

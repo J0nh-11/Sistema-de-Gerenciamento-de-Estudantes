@@ -36,7 +36,7 @@ class ResponsavelDiscenteDao {
             .getConnection()
             .execute(sql, values);
 
-        return result.insertId;
+        return result;
     }
 
     async update(relacao) {
@@ -58,7 +58,7 @@ class ResponsavelDiscenteDao {
             .getConnection()
             .execute(sql, values);
 
-        return result.affectedRows;
+        return result;
     }
 
     async deletar(id) {
@@ -66,7 +66,7 @@ class ResponsavelDiscenteDao {
             .getConnection()
             .execute(`DELETE FROM responsavel_discente WHERE id = ?`, [id]);
 
-        return result.affectedRows;
+        return result;
     }
 }
 

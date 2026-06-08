@@ -3,25 +3,37 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Criar Aviso Geral</title>
+        <title>
+            <%= typeof tituloPagina !== 'undefined' ? tituloPagina : 'Criar
+            Aviso Geral' %>
+        </title>
         <link rel="stylesheet" href="/css/admin.css" />
     </head>
     <body>
         <div class="container">
             <h1>Criar Aviso Geral</h1>
 
-            <form>
-                <label>Título</label>
+            <% if (typeof mensagemErro !== 'undefined' && mensagemErro) { %>
+            <div class="alert alert-danger"><%= mensagemErro %></div>
+            <% } %>
 
-                <input type="text" placeholder="Título do aviso" />
+            <form id="formMensagem">
+                <label for="conversaId">Título</label>
+                <input
+                    type="text"
+                    id="conversaId"
+                    placeholder="Título do aviso"
+                    required />
 
-                <label>Descrição</label>
+                <label for="texto">Descrição</label>
+                <textarea
+                    rows="8"
+                    id="texto"
+                    placeholder="Conteúdo do aviso"
+                    required></textarea>
 
-                <textarea rows="8" placeholder="Conteúdo do aviso"> </textarea>
-
-                <label>Data de Expiração</label>
-
-                <input type="date" />
+                <label for="dataExpiracao">Data de Expiração</label>
+                <input type="date" id="dataExpiracao" />
 
                 <br /><br />
 
@@ -30,5 +42,49 @@
                 </button>
             </form>
         </div>
+
+        <script>
+            document
+                .getElementById("formMensagem")
+                .addEventListener("submit", async (e) => {
+                    e.preventDefault();
+
+                    const conversa_id =
+                        document.getElementById("conversaId").value;
+                    const texto = document.getElementById("texto").value;
+                    const data_expiracao =
+                        document.getElementById("dataExpiracao").value;
+
+                    try {
+                        const resposta = await fetch("/api/mensagens", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                conversa_id,
+                                texto,
+                                data_expiracao, // Agora enviando a data também
+                            }),
+                        });
+
+                        const dados = await resposta.json();
+                        console.log(dados);
+
+                        // CORREÇÃO: O fetch antigo não mudava a página do usuário.
+                        // Mudamos para window.location.href para redirecionar de fato caso dê certo.
+                        if (resposta.ok) {
+                            window.location.href = "/admin";
+                        } else {
+                            alert(
+                                dados.mensagem || "Erro ao publicar o aviso.",
+                            );
+                        }
+                    } catch (erro) {
+                        console.error("Erro ao enviar dados:", erro);
+                        alert("Não foi possível conectar ao servidor.");
+                    }
+                });
+        </script>
     </body>
 </html>
