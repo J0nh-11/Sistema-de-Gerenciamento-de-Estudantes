@@ -9,7 +9,7 @@ const DocenteDao = require("../repository/DocenteDao");
 const ResponsavelDao = require("../repository/ResponsavelDao");
 
 class SolicitacaoService {
-    async create(solicitacao) {
+    async create(solicitacao, dadosExtras) {
         const existente = await SolicitacaoDao.buscarPorCpf(
             solicitacao.getCpf(),
         );
@@ -64,30 +64,31 @@ class SolicitacaoService {
             cargo: solicitacao.cargo,
         });
         switch (solicitacao.cargo) {
-            case "discente":
-                await DiscenteDao.createDiscente({
-                    matricula,
-                    turma,
-                    curso,
-                });
-                break;
 
-            case "docente":
-                await DocenteDao.createDocente({
-                    matricula,
-                    especialidade,
-                    formacao,
-                    salario,
-                });
-                break;
+    case "discente":
+        await DiscenteDao.createDiscente({
+            matricula,
+            turma: solicitacao.turma,
+            curso: solicitacao.curso
+        });
+        break;
 
-            case "responsavel":
-                await ResponsavelDao.create({
-                    matricula,
-                    parentesco,
-                });
-                break;
-        }
+    case "docente":
+        await DocenteDao.createDocente({
+            matricula,
+            especialidade: solicitacao.especialidade,
+            formacao: solicitacao.formacao,
+            salario: solicitacao.salario
+        });
+        break;
+
+    case "responsavel":
+        await ResponsavelDao.create({
+            matricula,
+            parentesco: solicitacao.parentesco
+        });
+        break;
+}
         
         await SolicitacaoDao.aprovar(id);
 

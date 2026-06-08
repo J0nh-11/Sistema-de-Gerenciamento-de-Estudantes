@@ -116,6 +116,14 @@ class CadastroController {
                 email: trimString(req.body.email),
                 senha: req.body.senha, // Não faz trim em senha
                 cargo: trimString(req.body.cargo || ""),
+                turma: req.body.turma,
+                curso: req.body.curso,
+
+                especialidade: req.body.especialidade,
+                formacao: req.body.formacao,
+                salario: req.body.salario,
+
+                parentesco: req.body.parentesco,
             };
 
             // Validação dos campos

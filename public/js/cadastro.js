@@ -67,10 +67,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const cpf = cpfInput.value;
         const email = document.getElementById("email").value.trim();
         const senha = document.getElementById("senha").value;
-        const tipoUsuario = document.getElementById("tipo_usuario").value;
+        const cargo = document.getElementById("cargo").value;
 
         // Validação de segurança básica para campos vazios
-        if (!nome || !cpf || !email || !senha || !tipoUsuario) {
+        if (!nome || !cpf || !email || !senha || !cargo) {
             alert("Por favor, preencha todos os campos obrigatórios.");
             return;
         }
@@ -94,10 +94,42 @@ document.addEventListener("DOMContentLoaded", () => {
             cpf: cpf.replace(/\D/g, ""), // Opcional: envia o CPF apenas com números para o banco
             email,
             senha,
-            tipo_usuario: tipoUsuario,
+            tipo_usuario: cargo,
         };
 
         try {
+            const cargo = document.getElementById("cargo").value;
+
+            const dadosUsuario = {
+                nome,
+                cpf: cpf.replace(/\D/g, ""),
+                email,
+                senha,
+                cargo,
+                data_nascimento:
+                    document.getElementById("data_nascimento").value,
+                celular: document.getElementById("celular").value,
+                endereco: document.getElementById("endereco").value,
+            };
+            if (cargo === "discente") {
+                dadosUsuario.turma = document.getElementById("turma").value;
+                dadosUsuario.curso = document.getElementById("curso").value;
+            }
+
+            if (cargo === "docente") {
+                dadosUsuario.especialidade =
+                    document.getElementById("especialidade").value;
+
+                dadosUsuario.formacao =
+                    document.getElementById("formacao").value;
+
+                dadosUsuario.salario = document.getElementById("salario").value;
+            }
+
+            if (cargo === "responsavel") {
+                dadosUsuario.parentesco =
+                    document.getElementById("parentesco").value;
+            }
             // Faz o envio assíncrono para a sua routerApi
             const resposta = await fetch("/api/cadastro", {
                 method: "POST",
@@ -133,6 +165,64 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (erro) {
             console.error("Erro ao conectar com o servidor:", erro);
             alert("Ocorreu um erro no servidor. Tente novamente mais tarde.");
+        }
+    });
+    const cargoSelect = document.getElementById("cargo");
+    const camposDinamicos = document.getElementById("campos-dinamicos");
+
+    cargoSelect.addEventListener("change", () => {
+        const cargo = cargoSelect.value;
+
+        camposDinamicos.innerHTML = "";
+
+        if (cargo === "discente") {
+            camposDinamicos.innerHTML = `
+            <div class="form-group">
+                <label>Turma</label>
+                <input type="text" id="turma" name="turma" required>
+            </div>
+
+            <div class="form-group">
+                <label>Curso</label>
+                <input type="text" id="curso" name="curso" required>
+            </div>
+        `;
+        }
+
+        if (cargo === "docente") {
+            camposDinamicos.innerHTML = `
+            <div class="form-group">
+                <label>Especialidade</label>
+                <input type="text" id="especialidade" name="especialidade" required>
+            </div>
+
+            <div class="form-group">
+                <label>Formação</label>
+                <input type="text" id="formacao" name="formacao" required>
+            </div>
+
+            <div class="form-group">
+                <label>Salário</label>
+                <input type="number" id="salario" name="salario" required>
+            </div>
+        `;
+        }
+
+        if (cargo === "responsavel") {
+            camposDinamicos.innerHTML = `
+            <div class="form-group">
+                <label>Parentesco</label>
+
+                <select id="parentesco" name="parentesco">
+                    <option value="Pai">Pai</option>
+                    <option value="Mãe">Mãe</option>
+                    <option value="Avó">Avó</option>
+                    <option value="Avô">Avô</option>
+                    <option value="Tio">Tio</option>
+                    <option value="Outro">Outro</option>
+                </select>
+            </div>
+        `;
         }
     });
 });
