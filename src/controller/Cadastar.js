@@ -179,6 +179,7 @@ class CadastroController {
                 mensagem:
                     "Solicitação de cadastro recebida. Aguarde a aprovação.",
                 protocolo: result.insertId,
+                redirectUrl: "/",
             });
         } catch (erro) {
             return res.status(400).json({

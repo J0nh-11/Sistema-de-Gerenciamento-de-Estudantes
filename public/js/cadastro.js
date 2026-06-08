@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Aguarda 3 segundos para o usuário ler a mensagem e redireciona para o login
                 setTimeout(() => {
-                    window.location.href = resultado.redirectUrl || "/login";
+                    window.location.href = resultado.redirectUrl || "/";
                 }, 3000);
             } else {
                 // Caso o backend retorne algum erro (Ex: CPF ou E-mail já cadastrados)
