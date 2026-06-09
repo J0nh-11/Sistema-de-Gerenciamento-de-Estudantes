@@ -20,17 +20,24 @@ const verifyJwt = require("../middlewares/jwt-dev");
 
 const AvisoController = require("../controller/avisoController");
 
-
 /**
  * PARA AVISOS
  */
-api.post("/avisos", (req, res) =>
-    AvisoController.criar(req, res)
+api.get("/usuario", verifyJwt, (req, res) => {
+    res.json({
+        matricula: req.usuario.matricula,
+        cargo: req.usuario.cargo,
+    });
+});
+api.put("/avisos/:id", verifyJwt, permissao("admin"), (req, res) =>
+    AvisoController.atualizar(req, res),
 );
+api.delete("/avisos/:id", verifyJwt, permissao("admin"), (req, res) =>
+    AvisoController.excluir(req, res),
+);
+api.post("/avisos", (req, res) => AvisoController.criar(req, res));
 
-api.get("/avisos", (req, res) =>
-    AvisoController.listar(req, res)
-);
+api.get("/avisos", (req, res) => AvisoController.listar(req, res));
 /*
     LOGIN
 */
@@ -86,19 +93,7 @@ api.get("/matricula/:id", (req, res) =>
 api.get("/matricula/discente/:matricula", (req, res) =>
     matriculaController.buscarPorDiscente(req, res),
 );
-api.put(
-    "/solicitacoes/aprovar/:id",
-    verifyJwt,
-    permissao("admin"),
-    solicitacoes.aprovar,
-);
 
-api.put(
-    "/solicitacoes/rejeitar/:id",
-    verifyJwt,
-    permissao("admin"),
-    solicitacoes.rejeitar,
-);
 // Criar nova matrícula
 api.post("/matricula", (req, res) => matriculaController.criar(req, res));
 

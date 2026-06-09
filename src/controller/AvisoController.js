@@ -28,6 +28,36 @@ class AvisoController {
             });
         }
     }
+    async excluir(req, res) {
+        try {
+            const { id } = req.params;
+
+            await AvisoService.excluir(id);
+
+            res.json({
+                mensagem: "Aviso removido com sucesso",
+            });
+        } catch (error) {
+            res.status(500).json({
+                erro: error.message,
+            });
+        }
+    }
+    async atualizar(req, res) {
+        try {
+            const { id } = req.params;
+
+            await AvisoService.atualizar(id, req.body);
+
+            res.json({
+                mensagem: "Aviso atualizado com sucesso",
+            });
+        } catch (error) {
+            res.status(400).json({
+                erro: error.message,
+            });
+        }
+    }
 }
 
 module.exports = new AvisoController();

@@ -35,6 +35,33 @@ class AvisoDao {
 
         return rows;
     }
+    async delete(id) {
+        const sql = `
+        DELETE FROM aviso
+        WHERE id = ?
+    `;
+
+        return db.getConnection().execute(sql, [id]);
+    }
+    async update(id, aviso) {
+        const sql = `
+        UPDATE aviso
+        SET
+            titulo = ?,
+            descricao = ?,
+            data_expiracao = ?
+        WHERE id = ?
+    `;
+
+        return db
+            .getConnection()
+            .execute(sql, [
+                aviso.titulo,
+                aviso.descricao,
+                aviso.data_expiracao,
+                id,
+            ]);
+    }
 }
 
 module.exports = new AvisoDao();
