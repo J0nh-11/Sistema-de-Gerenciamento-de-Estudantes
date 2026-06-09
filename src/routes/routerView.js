@@ -143,14 +143,6 @@ router.get("/admin/frequencias", verifyJwt, (req, res) => {
         ),
     );
 });
-router.get("/admin/frequencias", verifyJwt, (req, res) => {
-    res.sendFile(
-        path.join(
-            __dirname,
-            "../../public/view/admin/frequencias/gerenciaFrequencia.html",
-        ),
-    );
-});
 router.get("/admin/frequencias/relatorios", verifyJwt, (req, res) => {
     res.sendFile(
         path.join(

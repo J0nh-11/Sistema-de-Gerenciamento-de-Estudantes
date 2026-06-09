@@ -68,7 +68,6 @@
                 <label for="cargo"> Tipo de Usuário: </label>
 
                 <select id="cargo" name="cargo" required>
-                    <div id="campos-dinamicos"></div>
                     <option value="" disabled selected>
                         Selecione uma opção
                     </option>
@@ -81,6 +80,7 @@
 
                     <option value="admin">Administrador</option>
                 </select>
+                <div id="campos-dinamicos"></div>
             </div>
 
             <div
@@ -90,12 +90,8 @@
                 Cadastro realizado com sucesso!
             </div>
 
-            <button
-                type="submit"
-                class="btn btn-dark"
-                onclick="window.location.href = '/'">
-                >Cadastrar
-            </button>
+            <button type="submit" class="btn btn-dark"> Cadastrar</button>
         </form>
+        <script src="/js/cadastro.js"></script>
     </body>
 </html>

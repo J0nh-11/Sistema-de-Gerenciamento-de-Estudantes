@@ -9,7 +9,7 @@ const DocenteDao = require("../repository/DocenteDao");
 const ResponsavelDao = require("../repository/ResponsavelDao");
 
 class SolicitacaoService {
-    async create(solicitacao, dadosExtras) {
+    async create(solicitacao, dadosExtras = {}) {
         const existente = await SolicitacaoDao.buscarPorCpf(
             solicitacao.getCpf(),
         );
@@ -24,9 +24,28 @@ class SolicitacaoService {
             email: solicitacao.getEmail(),
             senha: solicitacao.getSenha(),
             cargo: solicitacao.getCargo(),
-            data_nascimento: solicitacao.getDataNascimento(),
-            celular: solicitacao.getCelular(),
-            endereco: solicitacao.getEndereco(),
+
+            data_nascimento:
+                solicitacao.getDataNascimento?.() ??
+                dadosExtras.data_nascimento ??
+                null,
+
+            celular: solicitacao.getCelular?.() ?? dadosExtras.celular ?? null,
+
+            endereco:
+                solicitacao.getEndereco?.() ?? dadosExtras.endereco ?? null,
+
+            // Discente
+            curso: dadosExtras.curso ?? null,
+            turma: dadosExtras.turma ?? null,
+
+            // Docente
+            especialidade: dadosExtras.especialidade ?? null,
+            formacao: dadosExtras.formacao ?? null,
+            salario: dadosExtras.salario ?? null,
+
+            // Responsável
+            parentesco: dadosExtras.parentesco ?? null,
         });
     }
 
@@ -64,32 +83,31 @@ class SolicitacaoService {
             cargo: solicitacao.cargo,
         });
         switch (solicitacao.cargo) {
+            case "discente":
+                await DiscenteDao.createDiscente({
+                    matricula,
+                    turma: solicitacao.turma,
+                    curso: solicitacao.curso,
+                });
+                break;
 
-    case "discente":
-        await DiscenteDao.createDiscente({
-            matricula,
-            turma: solicitacao.turma,
-            curso: solicitacao.curso
-        });
-        break;
+            case "docente":
+                await DocenteDao.createDocente({
+                    matricula,
+                    especialidade: solicitacao.especialidade,
+                    formacao: solicitacao.formacao,
+                    salario: solicitacao.salario,
+                });
+                break;
 
-    case "docente":
-        await DocenteDao.createDocente({
-            matricula,
-            especialidade: solicitacao.especialidade,
-            formacao: solicitacao.formacao,
-            salario: solicitacao.salario
-        });
-        break;
+            case "responsavel":
+                await ResponsavelDao.create({
+                    matricula,
+                    parentesco: solicitacao.parentesco,
+                });
+                break;
+        }
 
-    case "responsavel":
-        await ResponsavelDao.create({
-            matricula,
-            parentesco: solicitacao.parentesco
-        });
-        break;
-}
-        
         await SolicitacaoDao.aprovar(id);
 
         return {

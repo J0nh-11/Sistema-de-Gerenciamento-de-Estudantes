@@ -8,6 +8,12 @@ class Solicitacoes {
     #dataNascimento;
     #celular;
     #endereco;
+    #curso;
+    #turma;
+    #formacao;
+    #especialidade;
+    #salario;
+    #parentesco;
     constructor(
         id,
         nome,
@@ -18,6 +24,12 @@ class Solicitacoes {
         dataNascimento,
         celular,
         endereco,
+        curso,
+        turma,
+        formacao,
+        especialidade,
+        salario,
+        parentesco
     ) {
         this.#id = id;
         this.#nome = nome;
@@ -28,6 +40,13 @@ class Solicitacoes {
         this.#dataNascimento = dataNascimento;
         this.#celular = celular;
         this.#endereco = endereco;
+        this.#curso = curso;
+        this.#turma = turma;
+        this.#formacao = formacao;
+        this.#especialidade = especialidade;
+        this.#salario = salario;
+        this.#formacao = formacao;
+        
     }
     getId() {
         return this.#id;
@@ -61,6 +80,21 @@ class Solicitacoes {
 
     getDataNascimento() {
         return this.#dataNascimento;
+    }
+    getCurso() {
+        this.#curso;
+    }
+    getTurma() {
+        this.#turma;
+    }
+    getFormacao() {
+        this.#formacao;
+    }
+    getEspecialidade() {
+        this.#especialidade;
+    }
+    getSalario() {
+        this.#salario;
     }
 }
 

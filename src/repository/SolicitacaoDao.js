@@ -9,16 +9,22 @@ class SolicitacaoDao {
 
         const sql = `
 INSERT INTO solicitacoes (
-    nome,
-    cpf,
-    email,
-    senha,
-    cargo,
-    data_nascimento,
-    celular,
-    endereco
-)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                    nome,
+                    cpf,
+                    email,
+                    senha,
+                    cargo,
+                    data_nascimento,
+                    celular,
+                    endereco,
+                    curso,
+                    turma,
+                    especialidade,
+                    formacao,
+                    salario,
+                    parentesco
+                )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)
 `;
 
         const valores = [
@@ -30,7 +36,16 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             solicitacao.data_nascimento,
             solicitacao.celular,
             solicitacao.endereco,
+            solicitacao.curso,
+            solicitacao.turma,
+            solicitacao.especialidade,
+            solicitacao.formacao,
+            solicitacao.salario,
+            solicitacao.parentesco,
         ];
+        console.log("SOLICITAÇÃO:", solicitacao);
+        console.log("VALORES:", valores);
+
         const [result] = await connectionFactory
             .getConnection()
             .execute(sql, valores);
@@ -48,7 +63,13 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                     status,
                     data_nascimento,
                     celular,
-                    endereco
+                    endereco,
+                    curso,
+                    turma,
+                    especialidade,
+                    formacao,
+                    salario,
+                    parentesco
                 FROM solicitacoes
                 WHERE status = 'pendente'
             `);

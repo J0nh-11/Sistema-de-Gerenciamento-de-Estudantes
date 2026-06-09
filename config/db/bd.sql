@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS pessoa (
 
     matricula VARCHAR(20) UNIQUE NOT NULL,
 
-    cpf VARCHAR(11) UNIQUE NOT NULL,
+    cpf VARCHAR(14) UNIQUE NOT NULL,
 
     nome VARCHAR(250) NOT NULL,
 
@@ -193,9 +193,18 @@ CREATE TABLE IF NOT EXISTS nota (
 CREATE TABLE IF not EXISTS solicitacoes  (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(250) NOT NULL,
-    cpf VARCHAR(11) UNIQUE NOT NULL,
+    cpf VARCHAR(14) UNIQUE NOT NULL,
     email VARCHAR(250) UNIQUE NOT NULL,
     senha VARCHAR(255) NOT NULL,
+
+    turma VARCHAR(50),
+    curso VARCHAR(100),
+
+    especialidade VARCHAR(100),
+    formacao VARCHAR(100),
+    salario DECIMAL(10,2),
+
+    parentesco VARCHAR(50),
 
     cargo ENUM(
         'discente',

@@ -13,6 +13,10 @@ const MatriculaDisciplinaController = require("../controller/MatriculaDisciplina
 const ConversaController = require("../controller/conversaController");
 
 const MensagemController = require("../controller/mensaemController");
+
+const permissao = require("../middlewares/permissao");
+
+const verifyJwt = require("../middlewares/jwt-dev");
 /*
     LOGIN
 */
@@ -32,11 +36,19 @@ api.post("/cadastros", solicitacoes.create);
 */
 
 api.get("/solicitacoes/pendentes/:cargo", solicitacoes.listarPorTipo);
+api.put(
+    "/solicitacoes/aprovar/:id",
+    verifyJwt,
+    permissao("admin"),
+    solicitacoes.aprovar,
+);
 
-api.put("/solicitacoes/aprovar/:id", solicitacoes.aprovar);
-
-api.put("/solicitacoes/rejeitar/:id", solicitacoes.rejeitar);
-
+api.put(
+    "/solicitacoes/rejeitar/:id",
+    verifyJwt,
+    permissao("admin"),
+    solicitacoes.rejeitar,
+);
 /**
  * MATRÍCULAS EM DISCIPLINAS
  *
@@ -60,7 +72,19 @@ api.get("/matricula/:id", (req, res) =>
 api.get("/matricula/discente/:matricula", (req, res) =>
     matriculaController.buscarPorDiscente(req, res),
 );
+api.put(
+    "/solicitacoes/aprovar/:id",
+    verifyJwt,
+    permissao("admin"),
+    solicitacoes.aprovar,
+);
 
+api.put(
+    "/solicitacoes/rejeitar/:id",
+    verifyJwt,
+    permissao("admin"),
+    solicitacoes.rejeitar,
+);
 // Criar nova matrícula
 api.post("/matricula", (req, res) => matriculaController.criar(req, res));
 
@@ -85,13 +109,19 @@ api.get("/conversas", (req, res) => ConversaController.listar(req, res));
 
 api.get("/conversas/:id", (req, res) => ConversaController.buscar(req, res));
 
-api.delete("/conversas/:id", (req, res) => ConversaController.excluir(req, res));
+api.delete("/conversas/:id", (req, res) =>
+    ConversaController.excluir(req, res),
+);
 
 api.post("/mensagens", (req, res) => MensagemController.enviar(req, res));
 
-api.get("/mensagens/:conversaId", (req, res) => MensagemController.listar(req, res));
+api.get("/mensagens/:conversaId", (req, res) =>
+    MensagemController.listar(req, res),
+);
 
-api.delete("/mensagens/:id", (req, res) => MensagemController.excluir(req, res));
+api.delete("/mensagens/:id", (req, res) =>
+    MensagemController.excluir(req, res),
+);
 
 /**
  * ROTAS LEGADAS - Compatibilidade com frontend antigo
@@ -106,4 +136,3 @@ api.post("/matricula/cadastrar/", (req, res) =>
 );
 
 module.exports = api;
-    
