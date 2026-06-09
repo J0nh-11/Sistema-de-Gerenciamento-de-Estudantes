@@ -248,3 +248,10 @@ CREATE TABLE if not EXISTS mensagem (
         REFERENCES pessoa(matricula)
         ON DELETE CASCADE
 );
+CREATE TABLE if not EXISTS aviso (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(255),
+    descricao TEXT,
+    data_expiracao DATE,
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

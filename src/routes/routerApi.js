@@ -17,6 +17,20 @@ const MensagemController = require("../controller/mensaemController");
 const permissao = require("../middlewares/permissao");
 
 const verifyJwt = require("../middlewares/jwt-dev");
+
+const AvisoController = require("../controller/avisoController");
+
+
+/**
+ * PARA AVISOS
+ */
+api.post("/avisos", (req, res) =>
+    AvisoController.criar(req, res)
+);
+
+api.get("/avisos", (req, res) =>
+    AvisoController.listar(req, res)
+);
 /*
     LOGIN
 */
