@@ -31,13 +31,15 @@ class PessoaService {
         const token = jwt.sign(
             {
                 id: usuario.id,
+                matricula: usuario.matricula,
                 email: usuario.email,
                 cargo: usuario.cargo,
             },
             process.env.SECRET_SENHA_LOGIN,
-            { expiresIn: "1d" },
+            {
+                expiresIn: "24h",
+            },
         );
-
         return token;
     }
     async create(pessoa) {

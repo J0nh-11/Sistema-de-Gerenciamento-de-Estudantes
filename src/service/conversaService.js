@@ -2,16 +2,26 @@
 
 const ConversaDao = require("../repository/ConversaDao");
 const MensagemDao = require("../repository/MensagemDao");
+const ConversaParticipanteDao = require("../repository/ConversaParticipanteDao");
 
 class ConversaService {
     async criarConversa() {
         const conversaId = await ConversaDao.create();
 
-        return ConversaDao.findById(conversaId);
+        return await ConversaDao.findById(conversaId);
+    } 
+    async iniciarConversa(matriculaOrigem, matriculaDestino) {
+        const conversaId = await ConversaDao.create();
+
+        await ConversaParticipanteDao.adicionar(conversaId, matriculaOrigem);
+
+        await ConversaParticipanteDao.adicionar(conversaId, matriculaDestino);
+
+        return await ConversaDao.findById(conversaId);
     }
 
-    async listarConversas() {
-        return ConversaDao.list();
+    async listarConversasUsuario(matricula) {
+        return ConversaParticipanteDao.listarConversasUsuario(matricula);
     }
 
     async buscarConversa(id) {

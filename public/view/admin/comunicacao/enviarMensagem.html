@@ -3,35 +3,55 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Enviar Mensagem</title>
-        <link rel="stylesheet" href="/css/criaAviso.css" />
+        <title>Chat Interno</title>
+
+        <link rel="stylesheet" href="/css/chat.css" />
     </head>
+
     <body>
-        <div class="container">
-            <h1>Enviar Mensagem</h1>
+        <div class="chat-container">
+            <!-- Lista de Conversas -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <h3>Contatos</h3>
+                    <div class="sidebar-header">
+                        <h3>Conversas</h3>
 
-            <form>
-                <label>Destinatário</label>
+                        <button id="btnNovaConversa">Nova Conversa</button>
+                    </div>
+                </div>
 
-                <select>
-                    <option>Selecione um usuário</option>
-                </select>
+                <ul id="listaContatos"></ul>
 
-                <label>Assunto</label>
+                <hr />
 
-                <input type="text" placeholder="Digite o assunto" />
+                <h3>Conversas</h3>
 
-                <label>Mensagem</label>
+                <ul id="listaConversas"></ul>
+            </aside>
 
-                <textarea rows="8" placeholder="Digite a mensagem"> </textarea>
+            <!-- Área do Chat -->
+            <main class="chat-area">
+                <div class="chat-header">
+                    <h3 id="nomeContato">Selecione uma conversa</h3>
+                </div>
 
-                <br /><br />
+                <div id="mensagens" class="mensagens">
+                    <!-- mensagens -->
+                </div>
 
-                <button type="submit" class="btn btn-success">
-                    Enviar Mensagem
-                </button>
-            </form>
-            <script src="/js/mural.js"></script>
+                <form id="formMensagem" class="chat-input">
+                    <input
+                        type="text"
+                        id="texto"
+                        placeholder="Digite uma mensagem..."
+                        autocomplete="off" />
+
+                    <button type="submit">Enviar</button>
+                </form>
+            </main>
         </div>
+
+        <script src="/js/chat.js"></script>
     </body>
 </html>

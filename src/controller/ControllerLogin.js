@@ -12,7 +12,6 @@ class ControllerLogin {
             res.cookie("token", token, {
                 httpOnly: true,
                 secure: false, // true em produção
-                // sameSite: "lax",
                 maxAge: 1000 * 60 * 60 * 2,
             });
 

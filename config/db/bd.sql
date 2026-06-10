@@ -255,3 +255,17 @@ CREATE TABLE if not EXISTS aviso (
     data_expiracao DATE,
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+CREATE TABLE if not EXISTS conversa_participante (
+    conversa_id INT NOT NULL,
+    matricula VARCHAR(20) NOT NULL,
+
+    PRIMARY KEY (conversa_id, matricula),
+
+    FOREIGN KEY (conversa_id)
+        REFERENCES conversa(id)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY (matricula)
+        REFERENCES pessoa(matricula)
+        ON DELETE CASCADE
+);

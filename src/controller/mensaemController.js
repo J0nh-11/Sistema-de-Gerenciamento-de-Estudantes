@@ -5,6 +5,7 @@ const MensagemService = require("../service/MensagemService");
 class MensagemController {
     async enviar(req, res) {
         try {
+            console.log(req.body);
             await MensagemService.enviarMensagem(req.body);
 
             res.status(201).json({

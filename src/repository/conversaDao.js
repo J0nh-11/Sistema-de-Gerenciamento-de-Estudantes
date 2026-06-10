@@ -5,8 +5,8 @@ const db = require("../../config/db/ConnectionFactory");
 class ConversaDao {
     async create() {
         const sql = `
-            INSERT INTO conversa ()
-            VALUES ()
+        INSERT INTO conversa (criado_em)
+        VALUES (NOW())
         `;
 
         const [result] = await db.execute(sql);

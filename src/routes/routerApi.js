@@ -20,10 +20,17 @@ const verifyJwt = require("../middlewares/jwt-dev");
 
 const AvisoController = require("../controller/avisoController");
 
+const ContatoController = require("../controller/ContatoController");
+
+api.get("/contatos", verifyJwt, (req, res) =>
+    ContatoController.listar(req, res),
+);
 /**
  * PARA AVISOS
  */
+
 api.get("/usuario", verifyJwt, (req, res) => {
+    console.log(req.usuario);
     res.json({
         matricula: req.usuario.matricula,
         cargo: req.usuario.cargo,
@@ -112,9 +119,11 @@ api.delete("/matricula/:id", (req, res) =>
     matriculaController.deletar(req, res),
 );
 
-api.post("/conversas", (req, res) => ConversaController.criar(req, res));
+api.post("/conversas/iniciar", verifyJwt, (req, res) =>
+    ConversaController.iniciar(req, res),
+);
 
-api.get("/conversas", (req, res) => ConversaController.listar(req, res));
+api.get("/conversas", verifyJwt, (req, res) => ConversaController.listar(req, res));
 
 api.get("/conversas/:id", (req, res) => ConversaController.buscar(req, res));
 
@@ -122,7 +131,9 @@ api.delete("/conversas/:id", (req, res) =>
     ConversaController.excluir(req, res),
 );
 
-api.post("/mensagens", (req, res) => MensagemController.enviar(req, res));
+api.post("/mensagens", verifyJwt, (req, res) =>
+    MensagemController.enviar(req, res),
+);
 
 api.get("/mensagens/:conversaId", (req, res) =>
     MensagemController.listar(req, res),
