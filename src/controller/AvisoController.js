@@ -1,10 +1,15 @@
 const AvisoService = require("../service/avisoService");
-
+const avisoModel = require("../model/avisoModel");
 class AvisoController {
     async criar(req, res) {
         try {
             console.log(req.body);
+            let dados = {
+                id: avisoModel.getId(),
+                titulo: avisoModel.getTitulo(),
+                descricao: avisoModel.getDescricao(),
 
+            }
             await AvisoService.criar(req.body);
 
             res.status(201).json({

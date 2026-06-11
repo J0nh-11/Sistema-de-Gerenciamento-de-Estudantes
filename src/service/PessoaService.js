@@ -16,10 +16,6 @@ class PessoaService {
         if (!usuario) {
             throw new Error("Email ou senha inválidos");
         }
-
-        console.log("SENHA DIGITADA:", senha);
-        console.log("SENHA BANCO:", usuario.senha);
-
         const senhaValida = await bcrypt.compare(senha, usuario.senha);
 
         console.log("SENHA VALIDA:", senhaValida);
@@ -43,6 +39,64 @@ class PessoaService {
         return token;
     }
     async create(pessoa) {
+        // Limpa strings
+        pessoa = {
+            matricula: trimString(req.body.matricula),
+            nome: trimString(req.body.nome),
+            cpf: trimString(req.body.cpf),
+            email: trimString(req.body.email),
+            dataNascimento: trimString(req.body.dataNascimento),
+            senha: req.body.senha, // Não trim em senha
+            endereco: trimString(req.body.endereco),
+            cargo: trimString(req.body.cargo),
+            celular: trimString(req.body.celular),
+        };
+
+        // Validação de campos obrigatórios
+        const validacao = validarCampos(pessoa, [
+            {
+                nome: "nome",
+                label: "Nome",
+                tipo: "minLength",
+                minLength: 3,
+                obrigatorio: true,
+            },
+            { nome: "cpf", label: "CPF", tipo: "cpf", obrigatorio: true },
+            {
+                nome: "email",
+                label: "Email",
+                tipo: "email",
+                obrigatorio: true,
+            },
+            {
+                nome: "dataNascimento",
+                label: "Data de Nascimento",
+                tipo: "data",
+                obrigatorio: true,
+            },
+            {
+                nome: "senha",
+                label: "Senha",
+                tipo: "minLength",
+                minLength: 8,
+                obrigatorio: true,
+            },
+            {
+                nome: "endereco",
+                label: "Endereço",
+                tipo: "minLength",
+                minLength: 5,
+                obrigatorio: false,
+            },
+            {
+                nome: "celular",
+                label: "Celular",
+                tipo: "minLength",
+                minLength: 10,
+                obrigatorio: false,
+            },
+        ]);
+
         // regra de negócio
         const existente = await PessoaDao.buscarPorMatricula(
             pessoa.getMatricula(),
@@ -80,9 +134,63 @@ class PessoaService {
     }
 
     async update(pessoa) {
-        if (!pessoa.getMatricula()) {
-            throw new Error("Matrícula obrigatória");
-        }
+        // Limpa strings
+        pessoa = {
+            matricula: trimString(req.body.matricula),
+            nome: trimString(req.body.nome),
+            cpf: trimString(req.body.cpf),
+            email: trimString(req.body.email),
+            dataNascimento: trimString(req.body.dataNascimento),
+            senha: req.body.senha, // Não trim em senha
+            endereco: trimString(req.body.endereco),
+            cargo: trimString(req.body.cargo),
+            celular: trimString(req.body.celular),
+        };
+
+        // Validação de campos obrigatórios
+        const validacao = validarCampos(pessoa, [
+            {
+                nome: "nome",
+                label: "Nome",
+                tipo: "minLength",
+                minLength: 3,
+                obrigatorio: true,
+            },
+            { nome: "cpf", label: "CPF", tipo: "cpf", obrigatorio: true },
+            {
+                nome: "email",
+                label: "Email",
+                tipo: "email",
+                obrigatorio: true,
+            },
+            {
+                nome: "dataNascimento",
+                label: "Data de Nascimento",
+                tipo: "data",
+                obrigatorio: true,
+            },
+            {
+                nome: "senha",
+                label: "Senha",
+                tipo: "minLength",
+                minLength: 8,
+                obrigatorio: true,
+            },
+            {
+                nome: "endereco",
+                label: "Endereço",
+                tipo: "minLength",
+                minLength: 5,
+                obrigatorio: false,
+            },
+            {
+                nome: "celular",
+                label: "Celular",
+                tipo: "minLength",
+                minLength: 10,
+                obrigatorio: false,
+            },
+        ]);
 
         let dados = {
             id: pessoa.getId(),
@@ -98,7 +206,9 @@ class PessoaService {
                 pessoa.getDataNascimento(),
             ),
         };
-
+        if (!pessoa.getMatricula()) {
+            throw new Error("Matrícula obrigatória");
+        }
         if (pessoa.getSenha()) {
             dados.senha = await bcrypt.hash(pessoa.getSenha(), 10);
         }
