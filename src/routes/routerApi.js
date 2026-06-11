@@ -22,9 +22,13 @@ const AvisoController = require("../controller/avisoController");
 
 const ContatoController = require("../controller/ContatoController");
 
+const DiscenteController = require("../controller/DiscenteController");
+
 api.get("/contatos", verifyJwt, (req, res) =>
     ContatoController.listar(req, res),
 );
+api.get("/alunos", verifyJwt,permissao("admin"),DiscenteController.listar);
+
 /**
  * PARA AVISOS
  */
@@ -123,7 +127,9 @@ api.post("/conversas/iniciar", verifyJwt, (req, res) =>
     ConversaController.iniciar(req, res),
 );
 
-api.get("/conversas", verifyJwt, (req, res) => ConversaController.listar(req, res));
+api.get("/conversas", verifyJwt, (req, res) =>
+    ConversaController.listar(req, res),
+);
 
 api.get("/conversas/:id", (req, res) => ConversaController.buscar(req, res));
 

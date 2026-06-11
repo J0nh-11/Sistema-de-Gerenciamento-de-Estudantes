@@ -1,106 +1,24 @@
 <!doctype html>
-<html lang="pt-br">
+<html lang="pt-BR">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Gerenciar Matrículas - Sistema Escolar</title>
-        <link rel="stylesheet" href="/css/admin.css" />
+        <title>Alunos</title>
+        <link rel="stylesheet" href="/css/gerenciarMatriculas.css" />
     </head>
-
     <body>
-        <div class="dashboard-container">
-            <aside class="sidebar">
-                <div class="profile-info">
-                    <div class="avatar-circle">A</div>
-                    <h3>Administrador</h3>
-                    <p>Controle Total do Sistema</p>
-                </div>
+        <h1>Lista de Alunos</h1>
 
-                <nav class="sidebar-nav">
-                    <ul>
-                        <li><a href="/admin/dashboard"> Dashboard </a></li>
-                    </ul>
-                    <div class="sidebar-footer">
-                        <button class="logout-btn">Sair do Sistema</button>
-                    </div>
-                </nav>
-            </aside>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Matrícula</th>
+                    <th>Curso</th>
+                </tr>
+            </thead>
 
-            <main class="main-content">
-                <header class="top-header">
-                    <div>
-                        <div class="breadcrumb">
-                            <a href="/admin/dashboard">Dashboard</a> &gt;
-                            <span>Gerenciar Matrículas</span>
-                        </div>
-                        <h1>Gerenciar Matrículas</h1>
-                        <p class="subtitle">
-                            Consulte, filtre e gerencie a situação cadastral e
-                            acadêmica dos alunos.
-                        </p>
-                    </div>
-                </header>
-
-                <section class="card filter-card">
-                    <div class="filter-grid">
-                        <div class="filter-group search-box">
-                            <label for="filter-search">Buscar Aluno</label>
-                            <input
-                                type="text"
-                                id="filter-search"
-                                placeholder="Digite o nome, CPF ou Código..." />
-                        </div>
-                        <div class="filter-group">
-                            <label for="filter-curso">Filtrar por Curso</label>
-                            <select id="filter-curso">
-                                <option value="todos">Todos os Cursos</option>
-                                <option value="fundamental-1">
-                                    Ensino Fundamental I
-                                </option>
-                                <option value="fundamental-2">
-                                    Ensino Fundamental II
-                                </option>
-                                <option value="medio">Ensino Médio</option>
-                            </select>
-                        </div>
-                        <div class="filter-group">
-                            <label for="filter-status"
-                                >Status da Matrícula</label
-                            >
-                            <select id="filter-status">
-                                <option value="todos">Todos os Status</option>
-                                <option value="ativo">Ativo</option>
-                                <option value="pendente">Pendente</option>
-                                <option value="trancado">Trancado</option>
-                            </select>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="card table-card">
-                    <div class="table-container">
-                        <table id="table-matriculas">
-                            <thead>
-                                <tr>
-                                    <th>Cód.</th>
-                                    <th>Aluno</th>
-                                    <th>CPF</th>
-                                    <th>Curso / Série</th>
-                                    <th>Turma / Turno</th>
-                                    <th>Status</th>
-                                    <th class="text-center">Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody id="table-body-matriculas"></tbody>
-                        </table>
-                    </div>
-
-                    <div class="table-footer">
-                        <p id="resultados-count">Mostrando 0 de 0 matrículas</p>
-                    </div>
-                </section>
-            </main>
-        </div>
+            <tbody id="tabelaAlunos"></tbody>
+        </table>
 
         <script src="/js/gerenciarMatriculas.js"></script>
     </body>
