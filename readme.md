@@ -30,3 +30,7 @@ IAs utilizadas: Chatgpt e gemini: Precisei tirar dúvida de muitos conceitos par
 Sexto dia:
 - 25/05
 Resumo: FOi feito um arquivo que inicia temporariamente a conexão com o banco de dados, criando o banco, as tabelas; também foi criado um script p/ criar automaticamente o usuário adm no banco de dados. Além de ter feito todas as tabelas do sistema!
+
+- 25/05 até 11/06
+
+Dificuldades com rotas API, js para html puro, dificuldades em implementar as operações dinamicas no html, manter as regras de negocio no service. Projeto está com duas funcionalidades prontas, cadastro e comunicações. Ainda falta 3 funcionalidades. Materias estudados foram, aulas de POO (classroom), PWE2 (classroom), BCDD (classroom), chatgpt para retirada de dúvidas, gemini para fazer as telas.
