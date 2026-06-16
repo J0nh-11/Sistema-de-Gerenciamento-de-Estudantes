@@ -5,7 +5,7 @@ const connectionFactory = require("../../config/db/ConnectionFactory");
 class Matricula {
     async create(dados) {
         const sql = `
-            INSERT INTO matricula_disciplina (
+            INSERT INTO matricula (
                 discente_matricula,
                 disciplina_id,
                 ano,
@@ -54,7 +54,7 @@ INNER JOIN disciplina d
     }
     async deletar(id) {
         const sql = `
-            DELETE FROM matricula_disciplina WHERE id = ?
+            DELETE FROM matricula WHERE id = ?
         `;
         const values = [id];
         const [result] = await connectionFactory

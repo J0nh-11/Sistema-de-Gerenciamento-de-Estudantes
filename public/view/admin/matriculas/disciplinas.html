@@ -66,10 +66,7 @@
                         <div class="button-stack">
                             <button
                                 class="btn btn-success"
-                                onclick="
-                                    window.location.href =
-                                        '/admin/disciplinas/nova'
-                                ">
+                                id="btnNovaDisciplina">
                                 Cadastrar Nova Disciplina
                             </button>
                             <button
@@ -96,86 +93,53 @@
                             <table class="admin-table">
                                 <thead>
                                     <tr>
-                                        <th>Código</th>
-                                        <th>Nome da Disciplina</th>
-                                        <th>Carga Horária</th>
-                                        <th>Docente Atribuído</th>
-                                        <th class="text-right">Ações</th>
+                                        <th>Disciplina</th>
+                                        <th>Docente</th>
+                                        <th>Ações</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>MAT-101</td>
-                                        <td>
-                                            <strong>Matemática Álgebra</strong>
-                                        </td>
-                                        <td>80h</td>
-                                        <td>Prof. Carlos Silva</td>
-                                        <td class="text-right">
-                                            <button
-                                                class="btn btn-warning btn-sm btn-edit"
-                                                data-id="MAT-101">
-                                                Editar
-                                            </button>
-                                            <button
-                                                class="btn btn-dark btn-sm btn-delete"
-                                                data-id="MAT-101">
-                                                Remover
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>HIS-202</td>
-                                        <td>
-                                            <strong
-                                                >História Contemporânea</strong
-                                            >
-                                        </td>
-                                        <td>60h</td>
-                                        <td>Profª. Ana Souza</td>
-                                        <td class="text-right">
-                                            <button
-                                                class="btn btn-warning btn-sm btn-edit"
-                                                data-id="HIS-202">
-                                                Editar
-                                            </button>
-                                            <button
-                                                class="btn btn-dark btn-sm btn-delete"
-                                                data-id="HIS-202">
-                                                Remover
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>BIO-303</td>
-                                        <td>
-                                            <strong>Biologia Celular</strong>
-                                        </td>
-                                        <td>80h</td>
-                                        <td>
-                                            <span class="unassigned"
-                                                >Não atribuído</span
-                                            >
-                                        </td>
-                                        <td class="text-right">
-                                            <button
-                                                class="btn btn-info btn-sm btn-assign"
-                                                data-id="BIO-303">
-                                                Atribuir
-                                            </button>
-                                            <button
-                                                class="btn btn-warning btn-sm btn-edit"
-                                                data-id="BIO-303">
-                                                Editar
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
+
+                                <tbody id="tabelaAlunos"></tbody>
                             </table>
                         </div>
                     </section>
                 </div>
             </main>
+        </div>
+        <!-- Modal Nova Disciplina -->
+        <div id="modalDisciplina" class="modal">
+            <div class="modal-content">
+                <h2>Nova Disciplina</h2>
+
+                <label>Nome da Disciplina</label>
+                <input
+                    type="text"
+                    id="nomeDisciplina"
+                    placeholder="Digite o nome da disciplina" />
+
+                <label>Matrícula do Docente</label>
+
+                <div class="busca-docente">
+                    <input
+                        type="text"
+                        id="matriculaDocente"
+                        placeholder="Digite a matrícula" />
+
+                    <button id="btnBuscarDocente">Buscar</button>
+                </div>
+
+                <div id="dadosDocente"></div>
+
+                <div class="acoes-modal">
+                    <button id="btnSalvarDisciplina" class="btn btn-success">
+                        Salvar
+                    </button>
+
+                    <button id="btnFecharModal" class="btn btn-outline">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
         </div>
 
         <script src="/js/disciplinas.js"></script>

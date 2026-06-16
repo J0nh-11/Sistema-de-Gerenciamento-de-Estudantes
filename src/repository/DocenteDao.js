@@ -56,6 +56,32 @@ class DocenteDao {
             .execute(sql, values);
         return result;
     }
+    async buscarPorMatricula(matricula) {
+        const sql = `
+        SELECT
+            pessoa.id,
+            pessoa.matricula,
+            pessoa.cpf,
+            pessoa.nome,
+            pessoa.email,
+            pessoa.data_nascimento,
+            pessoa.endereco,
+            pessoa.celular,
+            pessoa.cargo,
+            docente.formacao,
+            docente.especialidade
+        FROM docente
+        INNER JOIN pessoa
+            ON docente.matricula = pessoa.matricula
+        WHERE docente.matricula = ?
+    `;
+
+        const [result] = await connectionFactory
+            .getConnection()
+            .execute(sql, [matricula]);
+
+        return result[0];
+    }
 }
 
 module.exports = new DocenteDao();

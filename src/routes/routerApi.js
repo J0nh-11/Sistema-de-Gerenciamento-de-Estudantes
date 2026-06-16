@@ -24,10 +24,25 @@ const ContatoController = require("../controller/ContatoController");
 
 const DiscenteController = require("../controller/DiscenteController");
 
-api.get("/contatos", verifyJwt, (req, res) =>
-    ContatoController.listar(req, res),
+const DisciplinaController = require("../controller/DisciplinaController");
+
+const DocenteController = require("../controller/DocenteController");
+
+// Listar disciplinas
+api.get("/disciplinas", (req, res) => DisciplinaController.listar(req, res));
+
+// Cadastrar disciplina
+api.post("/disciplinas", verifyJwt, permissao("admin"), (req, res) =>
+    DisciplinaController.criar(req, res),
 );
-api.get("/alunos", verifyJwt,permissao("admin"),DiscenteController.listar);
+
+// Excluir disciplina
+api.delete("/disciplinas/:id", verifyJwt, permissao("admin"), (req, res) =>
+    DisciplinaController.deletar(req, res),
+);
+
+api.get("/contatos", verifyJwt, (req, res) => ContatoController.listar);
+api.get("/alunos", verifyJwt, permissao("admin"), DiscenteController.listar);
 
 /**
  * PARA AVISOS
@@ -104,6 +119,26 @@ api.get("/matricula/:id", (req, res) =>
 api.get("/matricula/discente/:matricula", (req, res) =>
     matriculaController.buscarPorDiscente(req, res),
 );
+// Buscar matrículas de um discente específico
+api.get("/matricula/docente/:matricula", (req, res) =>
+    matriculaController.listar(req, res),
+);
+// Listar docentes
+api.get("/docentes", (req, res) => DocenteController.listar(req, res));
+
+// Buscar docente por matrícula
+api.get("/docentes/matricula/:matricula", (req, res) =>
+    DocenteController.buscarPorMatricula(req, res),
+);
+
+// Criar docente
+api.post("/docentes", (req, res) => DocenteController.criar(req, res));
+
+// Atualizar docente
+api.put("/docentes", (req, res) => DocenteController.atualizar(req, res));
+
+// Excluir docente
+api.delete("/docentes/:id", (req, res) => DocenteController.deletar(req, res));
 
 // Criar nova matrícula
 api.post("/matricula", (req, res) => matriculaController.criar(req, res));
