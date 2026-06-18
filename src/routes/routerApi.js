@@ -96,6 +96,12 @@ api.put(
     permissao("admin"),
     solicitacoes.rejeitar,
 );
+api.put(
+    "/solicitacoes/deletar/:id",
+    verifyJwt,
+    permissao("admin"),
+    solicitacoes.deletar,
+);
 /**
  * MATRÍCULAS EM DISCIPLINAS
  *

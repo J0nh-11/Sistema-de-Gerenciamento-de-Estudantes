@@ -1,8 +1,11 @@
 const AvisoService = require("../service/avisoService");
-const avisoModel = require("../model/avisoModel");
+const avisoModels = require("../model/avisoModel");
 class AvisoController {
     async criar(req, res) {
         try {
+            const avisoModel = new avisoModels();
+
+            
             console.log(req.body);
             let dados = {
                 id: avisoModel.getId(),

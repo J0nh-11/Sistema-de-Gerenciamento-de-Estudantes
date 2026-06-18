@@ -72,7 +72,7 @@ async function aprovar(id) {
 }
 
 async function rejeitar(id) {
-    const resposta = await fetch(`/api/solicitacoes/rejeitar/${id}`, {
+    const resposta = await fetch(`/api/solicitacoes/rejeitar${id}`, {
         method: "PUT",
         credentials: "include",
     });
@@ -80,9 +80,11 @@ async function rejeitar(id) {
     const resultado = await resposta.json();
 
     alert(resultado.mensagem);
-
     carregarSolicitacoes();
+
+
 }
+
 
 // ==============================
 // LOGOUT
