@@ -1,6 +1,8 @@
 Equipe: João Daniel;
 Turma: 912A - Grupo 1
 
+Antes de ler esse progresso, vá até a linha 41 e veja como utilizar o sistema.
+
 Primeiro dia:
 - 29/04
 Estou iniciando com o modelo conceitual, lógico de BCDD e UML; pretendo até o final de semana
@@ -34,3 +36,9 @@ Resumo: FOi feito um arquivo que inicia temporariamente a conexão com o banco d
 - 25/05 até 11/06
 
 Dificuldades com rotas API, js para html puro, dificuldades em implementar as operações dinamicas no html, manter as regras de negocio no service. Projeto está com duas funcionalidades prontas, cadastro e comunicações. Ainda falta 3 funcionalidades. Materias estudados foram, aulas de POO (classroom), PWE2 (classroom), BCDD (classroom), chatgpt para retirada de dúvidas, gemini para fazer as telas.
+
+
+Como usar o sistema:
+
+Em config/db/seeders/CreateAdmin, siga o exemplo e se auto cadastre no Sistema.
+Vá p/ o arquivo .env, e coloque suas informações de conexão com o banco de dados e o que estiver pedindo nas variaveis. Baixe todas as bibliotecas necessárias que estão em package.json
